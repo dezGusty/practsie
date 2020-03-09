@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../shared/survey.service';
 import { Survey } from '../shared/survey.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-survey',
@@ -9,7 +10,7 @@ import { Survey } from '../shared/survey.model';
 })
 export class SurveyComponent implements OnInit {
 
-  constructor(private surveySvc: SurveyService) { }
+  constructor(private surveySvc: SurveyService, private router: Router) { }
 
   public survey: Survey;
   ngOnInit(): void {
@@ -18,6 +19,10 @@ export class SurveyComponent implements OnInit {
 
   onStoreResultsClicked() {
     this.surveySvc.saveSurveyResults(this.survey);
+
+    this.surveySvc.clearTokenAndDoc();
+    this.router.navigate(['/done']);
+
   }
 
 }

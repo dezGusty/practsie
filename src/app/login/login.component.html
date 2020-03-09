@@ -1,10 +1,26 @@
 <div class="container">
-
   <div class="row">
-    <p>Vă rugăm să introduceți codul primit!</p>
-    <p>(Please enter your user token)</p>
-    <input type="text" name="user_token" id="user_token" />
-    <button type="button" class="btn-outline-primary">Proceed</button>
+    <div class="jumbotron">
+      <h1>
+        Login
+      </h1>
+      <p class="lead">
+        Vă rugăm să introduceți codul primit!
+      </p>
+      <hr />
+      <p>(Please enter your user token)</p>
+      <p class="lead">
+        <input type="text" name="user_token" [(ngModel)]="userToken" />
+      </p>
+      <p class="lead">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="onProceedClick()"
+        >
+          Proceed
+        </button>
+      </p>
+    </div>
   </div>
-
 </div>

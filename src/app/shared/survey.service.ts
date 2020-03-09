@@ -23,9 +23,22 @@ export class SurveyService {
   //   return this.surveys;
   // }
 
+  doesTokenSeemValid(token: string): boolean {
+    return token.startsWith('PS-');
+  }
+
+  clearTokenAndDoc() {
+    this.userToken = '';
+    this.singleSurvey = null;
+  }
+
+  setUserToken(token: string) {
+    this.userToken = token;
+  }
+
   hasUserToken(): boolean {
     return this.userToken.length > 0
-      && this.userToken.startsWith('PS-');
+      && this.doesTokenSeemValid(this.userToken);
   }
 
   getDefaultSurvey(): Survey {
@@ -72,14 +85,20 @@ export class SurveyService {
       console.log('[survey] token length is invalid!');
       return;
     }
-    const surveyRef = this.db.doc('/surveys/' + survey.userToken).ref;
+    const docName = '/surveys/' + survey.userToken;
+    console.log('docname:', docName);
+    const surveyRef = this.db.doc(docName).ref;
     const obj = {};
     survey.questions.forEach(question => {
       console.log('key:', question.headline);
       console.log('value.type:', question.answer.type);
       console.log('value.free:', question.answer.freeAnswer);
       console.log('value.val:', question.answer.getUserChoiceValue());
-
+      obj[question.headline] = {
+        type: question.answer.type,
+        free: question.answer.freeAnswer,
+        val: question.answer.getUserChoiceValue()
+      };
     })
 
     surveyRef.set(obj, { merge: true });

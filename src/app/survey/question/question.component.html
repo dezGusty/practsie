@@ -1,7 +1,6 @@
 <div class="list-group-item clearfix container mb-2">
     <h5>{{this.question.headline}}</h5>
     <p>{{this.question.description}}</p>
-    <!-- btn-group-vertical btn-group-toggle -->
     <div role="group">
         <app-choice *ngFor='let choice of this.question.answer.choices' [choice]="choice"
             (choiceSelected)="onChoiceSelected($event)"></app-choice>
