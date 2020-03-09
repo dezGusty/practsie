@@ -26,7 +26,7 @@ export class SurveyService {
   makeQuestionFromData(questionConfig: any): SurveyQuestion {
     console.log('questioncfg:', questionConfig);
 
-    let result: SurveyQuestion = new SurveyQuestion(questionConfig.headline, questionConfig.description);
+    const result: SurveyQuestion = new SurveyQuestion(questionConfig.headline, questionConfig.question);
     questionConfig.choices.forEach(choiceCfg => {
       result.answer.addChoice(new Choice(choiceCfg.value, choiceCfg.detail, choiceCfg.desc));
     });

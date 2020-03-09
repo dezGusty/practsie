@@ -9,9 +9,12 @@ import { SurveyQuestion } from 'src/app/shared/surveyquestion.model';
 export class QuestionComponent implements OnInit {
 
   @Input() question: SurveyQuestion;
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+    console.log('[q]', this.question);
+
   }
 
 }
