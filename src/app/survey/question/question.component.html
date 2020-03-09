@@ -2,9 +2,10 @@
 <h5>{{this.question.headline}}</h5>
 <p>{{this.question.description}}</p>
 
-<div class="btn-group-vertical" role="group">
+<div class="btn-group-vertical btn-group-toggle" role="group">
     <app-choice *ngFor='let choice of this.question.answer.choices'
     [choice]="choice"
+    (choiceSelected)="onChoiceSelected($event)"
     ></app-choice>
 </div>
 

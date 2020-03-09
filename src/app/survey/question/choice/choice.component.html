@@ -1,2 +1,12 @@
-<label for="opt__{{choice.value}}">{{choice.value}}</label>
-<button type="radio" name="option" id="opt__{{choice.value}}" value="{{choice.value}}">
+<button class="btn btn-secondary"
+  [class.checked]="choice.selected"
+  [class.active]="choice.selected"
+  type="radio" value="{{choice.value}}" (click)="onClick()">
+  {{choice.value}}
+</button>
+<span class="choice-detail">
+  {{choice.detail}}
+</span>
+<div class="choice-desc">
+  {{choice.desc}}
+</div>

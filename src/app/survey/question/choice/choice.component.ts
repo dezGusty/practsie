@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Choice } from 'src/app/shared/choice.model';
 
 @Component({
@@ -9,9 +9,15 @@ import { Choice } from 'src/app/shared/choice.model';
 export class ChoiceComponent implements OnInit {
 
   @Input() choice: Choice;
+  @Output() choiceSelected = new EventEmitter<Choice>();
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  onClick(): void {
+    console.log('click');
+    
+    this.choiceSelected.emit(this.choice);
+  }
 }
