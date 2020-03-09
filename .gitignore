@@ -44,6 +44,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+src/environments/firebase-data.ts
+.firebase/hosting.ZGlzdFxwcmFjdHNpZQ.cache
+
 
 # the lock file changes too often
 package-lock.json

@@ -1,12 +1,20 @@
-<button class="btn btn-secondary"
-  [class.checked]="choice.selected"
-  [class.active]="choice.selected"
-  type="radio" value="{{choice.value}}" (click)="onClick()">
-  {{choice.value}}
-</button>
-<span class="choice-detail">
-  {{choice.detail}}
-</span>
-<div class="choice-desc">
-  {{choice.desc}}
+<div class="row">
+  <div class="col-1 col-md-1 choice-btn-area">
+    <button class="btn btn-outline-secondary mb-1 choice-btn"
+    [class.active]="choice.selected"
+    [class.choice-active]="choice.selected"
+     type="radio"
+      value="{{choice.value}}" (click)="onClick()">
+      {{choice.value}}
+    </button>
+  </div>
+  <div class="col-11 col-md-11">
+    <div class="choice-detail" 
+    [class.speech-bubble]="choice.detail.length > 0">
+      {{choice.detail}}
+    </div>
+    <div class="choice-desc">
+      {{choice.desc}}
+    </div>
+  </div>
 </div>

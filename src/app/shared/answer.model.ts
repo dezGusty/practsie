@@ -25,13 +25,13 @@ export class Answer {
 
     public setUserChoiceByIndex(index: number) {
         // Update the 'old' index.
-        if (this.userSelectedChoiceIndex > 0 && this.userSelectedChoiceIndex < this.choices.length) {
+        if (this.userSelectedChoiceIndex >= 0 && this.userSelectedChoiceIndex < this.choices.length) {
             this.choices[this.userSelectedChoiceIndex].selected = false;
         }
 
         this.userSelectedChoiceIndex = index;
 
-        if (this.userSelectedChoiceIndex > 0 && this.userSelectedChoiceIndex < this.choices.length) {
+        if (this.userSelectedChoiceIndex >= 0 && this.userSelectedChoiceIndex < this.choices.length) {
             this.choices[this.userSelectedChoiceIndex].selected = true;
         }
     }
@@ -42,6 +42,10 @@ export class Answer {
 
     public getUserChoiceIndex(): number {
         return this.userSelectedChoiceIndex;
+    }
+
+    public getUserChoiceValue(): string {
+        return this.choices[this.userSelectedChoiceIndex].value;
     }
 
 }

@@ -20,8 +20,6 @@ export class QuestionComponent implements OnInit {
   }
 
   onChoiceSelected($event) {
-    console.log('choice selected', $event);
-    
     const selectedChoice: Choice = $event;
     if (null == selectedChoice) {
       return;

@@ -16,8 +16,6 @@ export class ChoiceComponent implements OnInit {
   }
 
   onClick(): void {
-    console.log('click');
-    
     this.choiceSelected.emit(this.choice);
   }
 }
