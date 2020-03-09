@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { SurveyComponent } from './survey/survey.component';
 import { QuestionComponent } from './survey/question/question.component';
 import { LoginComponent } from './login/login.component';
+import { SurveyService } from './shared/survey.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { LoginComponent } from './login/login.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [SurveyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,102 @@
+{
+    "surveyConfig": {
+        "questions": [
+            {
+                "headline": "C/C++",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de C++ pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": "0",
+                        "desc": "fără experiență"
+                    },
+                    {
+                        "value": "1"
+                    },
+                    {
+                        "value": "2"
+                    },
+                    {
+                        "value": "3",
+                        "desc": "Am folosit C sau C++ la școală, am făcut câteva teme.",
+                        "detail": "(Înțeleg sintaxa și firul de execuție al programului. Pot urmări un exemplu online și să ajustez la nevoile mele. Știu să-mi organizez codul în funcții, clase.)"
+                    },
+                    {
+                        "value": "4"
+                    },
+                    {
+                        "value": "5",
+                        "desc": "Am scris destul de mult cod C și C++ și am trecut prin multe subiecte.",
+                        "detail": "(Lucru cu fișiere, input-output, debugging, clase și obiecte, vectori, matrici, pointeri, referințe)."
+                    },
+                    {
+                        "value": "6"
+                    },
+                    {
+                        "value": "7"
+                    },
+                    {
+                        "value": "8",
+                        "desc": "Am folosit mult C/C++. Nu doar la școală, dar și pentru proiecte personale.",
+                        "detail": "(Știu procesul de build, să integrez un party 3rd library cu headers și static/dynamic linking. Folosesc structuri template și algoritmi din standard library)"
+                    },
+                    {
+                        "value": "9"
+                    },
+                    {
+                        "value": "10",
+                        "desc": "Cred că mă pot angaja ca developer junior în C++.",
+                        "detail": "(Știu când și cum se alocă și de-alocă memoria, RAII, să lucrez cu smart pointers. Am aplicat câteva design patterns, am folosit CMake, am lucrat cu thread-uri)"
+                    }
+                ]
+            },
+            {
+                "headline": "C#",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de C#/.NET pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": 0,
+                        "desc": "fără experiență"
+                    },
+                    {
+                        "value": 1
+                    },
+                    {
+                        "value": 2
+                    },
+                    {
+                        "value": 3,
+                        "desc": "Am folosit .NET/C# la școală, am făcut câteva teme",
+                        "detail": "(Înțeleg sintaxa și firul de execuție al programului. Pot urmări un exemplu online și să ajustez la nevoile mele. Știu să-mi organizez codul în funcții, clase, metode.)"
+                    },
+                    {
+                        "value": 4
+                    },
+                    {
+                        "value": 5,
+                        "desc": "Am scris destul de mult cod .NET/C# și am trecut prin multe subiecte.",
+                        "detail": "(Lucru cu fișiere, input-output, debugging, clase și obiecte, colecții, referințe, moștenire, OOP interfețe, evenimente)"
+                    },
+                    {
+                        "value": 6
+                    },
+                    {
+                        "value": 7
+                    },
+                    {
+                        "value": 8,
+                        "desc": "Am folosit mult .NET/C#. Nu doar la școală, dar și pentru proiecte personale.",
+                        "detail": "(Știu procesul de build, să integrez un party 3rd library cu Nuget packages. Am folosit Entity Framework. Am lucrat cu baze de date SQL. Generics. Am lucrat cu UI: WPF, MVC, Razor.)"
+                    },
+                    {
+                        "value": 9
+                    },
+                    {
+                        "value": 10,
+                        "desc": "Cred că mă pot angaja ca developer junior în .NET/C#. ",
+                        "detail": "Știu arhitectura unui proiect C#, separarea pe layere. Logging, tratare excepții. Cunosc MVVM, data bindings. Am aplicat teste unitare. Am cunoștințe de REST. Folosesc fluent OOP-încapsulare, polimorfism. )"
+                    }
+                ]
+            }
+        ]
+    }
+}

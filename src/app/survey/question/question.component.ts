@@ -1,12 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SurveyQuestion } from 'src/app/shared/surveyquestion.model';
 
 @Component({
   selector: 'app-question',
   templateUrl: './question.component.html',
-  styleUrls: ['./question.component.css']
+  styles: ['']
 })
 export class QuestionComponent implements OnInit {
 
+  @Input() question: SurveyQuestion;
   constructor() { }
 
   ngOnInit(): void {

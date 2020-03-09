@@ -8,7 +8,7 @@ export class Survey {
     // {q: what's the difference between a duck},
     // {q: why}
     // ]}
-    constructor() {
+    constructor(public name: string) {
 
     }
 }

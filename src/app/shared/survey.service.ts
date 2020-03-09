@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Survey } from './survey.model';
 import { SurveyQuestion } from './surveyquestion.model';
 
+import { surveyConfig } from './surveyconfig.json';
+import { Choice } from './choice.model';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -9,28 +12,37 @@ export class SurveyService {
 
   private surveys: Survey[] = [];
   constructor() {
-    this.surveys.push(this.makeSurveyFromData('bla'));
+    this.surveys.push(this.makeSurveyFromData(surveyConfig));
   }
 
   getAllSurveys() {
-
+    return this.surveys;
   }
 
   getSurveyByName(name: string): Survey {
-    let result: Survey = new Survey();
+    return this.getAllSurveys().find(survey => survey.name === name);
+  }
+
+  makeQuestionFromData(questionConfig: any): SurveyQuestion {
+    console.log('questioncfg:', questionConfig);
+
+    let result: SurveyQuestion = new SurveyQuestion(questionConfig.headline, questionConfig.description);
+    questionConfig.choices.forEach(choiceCfg => {
+      result.answer.addChoice(new Choice(choiceCfg.value, choiceCfg.detail, choiceCfg.desc));
+    });
+
     return result;
   }
 
-  makeQuestionFromData(data: string): SurveyQuestion {
-    let result: SurveyQuestion = new SurveyQuestion('blabla');
+  makeSurveyFromData(configObject: any): Survey {
+    const result: Survey = new Survey('default');
+    console.log('config:', configObject);
+    const questionsAray = configObject.questions;
+    console.log('questions:', questionsAray);
 
-    return result;
-  }
-  makeSurveyFromData(data: string): Survey {
-    let result: Survey = new Survey();
-
-    result.questions.push(this.makeQuestionFromData('bla'));
-    result.questions.push(this.makeQuestionFromData('bla'));
+    questionsAray.forEach(question => {
+      result.questions.push(this.makeQuestionFromData(question));
+    });
     return result;
   }
 }
