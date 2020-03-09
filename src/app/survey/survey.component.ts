@@ -13,7 +13,11 @@ export class SurveyComponent implements OnInit {
 
   public survey: Survey;
   ngOnInit(): void {
-    this.survey = this.surveySvc.getSurveyByName('default');
+    this.survey = this.surveySvc.getDefaultSurvey();
+  }
+
+  onStoreResultsClicked() {
+    this.surveySvc.saveSurveyResults(this.survey);
   }
 
 }

@@ -1,6 +1,12 @@
-<h2>Survey</h2>
-<h4>{{ survey.name }}</h4>
+<div class="container-fluid">
+  <form (submit)="onStoreResultsClicked()">
+    <h2>Survey</h2>
+    <h4>{{ survey.name }}</h4>
 
-<app-question *ngFor='let question of this.survey.questions'
-[question]="question"
-></app-question>
+    <app-question *ngFor='let question of this.survey.questions' [question]="question"></app-question>
+
+    <button class="btn btn-outline-primary mb-1" type="submit">
+      Submit
+    </button>
+  </form>
+</div>

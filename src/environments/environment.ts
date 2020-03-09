@@ -2,10 +2,13 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { firebaseConfig } from './firebase-data';
+
 const deploymentDomain = 'localhost';
 
 export const environment = {
   production: false,
+  firebase: firebaseConfig,
   cookieConsentDomain: deploymentDomain
 };
 
