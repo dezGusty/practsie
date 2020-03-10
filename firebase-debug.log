@@ -1,0 +1,13 @@
+[debug] [2020-03-10T13:03:35.179Z] ----------------------------------------------------------------------
+[debug] [2020-03-10T13:03:35.185Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\ro1v01k9\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy
+[debug] [2020-03-10T13:03:35.185Z] CLI Version:   7.14.0
+[debug] [2020-03-10T13:03:35.185Z] Platform:      win32
+[debug] [2020-03-10T13:03:35.185Z] Node Version:  v10.15.1
+[debug] [2020-03-10T13:03:35.197Z] Time:          Tue Mar 10 2020 15:03:35 GMT+0200 (Eastern European Standard Time)
+[debug] [2020-03-10T13:03:35.197Z] ----------------------------------------------------------------------
+[debug] [2020-03-10T13:03:35.197Z] 
+[debug] [2020-03-10T13:03:35.235Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-03-10T13:03:35.237Z] > authorizing via signed-in user
+[debug] [2020-03-10T13:03:35.238Z] [iam] checking project practsie for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2020-03-10T13:03:35.241Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/practsie:testIamPermissions  
+
