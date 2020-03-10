@@ -45,7 +45,11 @@ export class Answer {
     }
 
     public getUserChoiceValue(): string {
-        return this.choices[this.userSelectedChoiceIndex].value;
+        if (this.type === QuestionResponseType.CHOICE){
+            return this.choices[this.userSelectedChoiceIndex].value;
+        }
+
+        return this.freeAnswer;
     }
 
 }

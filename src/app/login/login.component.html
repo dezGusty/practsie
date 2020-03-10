@@ -2,27 +2,29 @@
   <div class="row">
     <div class="jumbotron">
       <h1>
-        Login
+        Login. Chestionar de auto-evaluare.
       </h1>
+      <p>Dacă v-aţi depus deja CV-ul la noi vă rugăm să completaţi acest chestionar în vederea finalizării procesului de
+        selecţie pentru programul de practică.</p>
+      <p>IMPORTANT: Completaţi formularul doar după depunerea CV-ului în caz contrar formularul nu va fi luat în calcul
+        şi va fi şters. De asemenea, depunerea CV-ului fără completarea acestui formular nu este suficientă pentru a fi
+        considerat în procesul de selecţie.</p>
+      <p>Dacă nu v-aţi depus deja CV-ul şi sunteţi interesaţi de programul de practică, puteţi începe înregistrarea la
+        adresa: <a href="https://new.siemens.com/ro/ro/companie/jobs-careers/programe-pentru-studeni-i-absolveni.html" >
+          https://new.siemens.com/ro/ro/companie/jobs-careers/programe-pentru-studeni-i-absolveni.html</a>
+      </p>
+      <hr>
       <p class="lead">
         Vă rugăm să introduceți codul primit!
       </p>
       <hr />
       <p>(Please enter your user token)</p>
       <p class="lead">
-        <input type="text" 
-        name="user_token" 
-        [(ngModel)]="userToken" 
-        (keyup)="onInputTokenChange($event)"
-        placeholder="Token..."
-        autofocus/>
+        <input type="text" name="user_token" [(ngModel)]="userToken" (keyup)="onInputTokenChange($event)"
+          placeholder="Token..." autofocus />
       </p>
       <p class="lead">
-        <button
-          type="button"
-          class="btn btn-outline-primary"
-          (click)="onProceedClick()"
-        >
+        <button type="button" class="btn btn-outline-primary" (click)="onProceedClick()">
           Proceed
         </button>
       </p>

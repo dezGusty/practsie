@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SurveyQuestion } from 'src/app/shared/surveyquestion.model';
 import { Choice } from 'src/app/shared/choice.model';
+import { QuestionResponseType } from 'src/app/shared/questionresponsetype.model';
 
 @Component({
   selector: 'app-question',
@@ -19,6 +20,10 @@ export class QuestionComponent implements OnInit {
     this.question.answer.setUserChoiceByIndex(0);
   }
 
+  isFreeChoice(): boolean {
+    return this.question.answer.type === QuestionResponseType.FREE_TEXT;
+  }
+
   onChoiceSelected($event) {
     const selectedChoice: Choice = $event;
     if (null == selectedChoice) {
@@ -27,5 +32,10 @@ export class QuestionComponent implements OnInit {
     console.log('selected: ', selectedChoice);
 
     this.question.answer.setUserChoiceByValue(selectedChoice.value);
+  }
+
+  onFreeAnswerChange($event) {
+    console.log('change', $event);
+    this.question.answer.freeAnswer = $event;
   }
 }

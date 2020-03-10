@@ -5,7 +5,11 @@
         <app-choice *ngFor='let choice of this.question.answer.choices' [choice]="choice"
             (choiceSelected)="onChoiceSelected($event)"></app-choice>
     </div>
-    <div class="eval-summary" *ngIf="this.question.answer.getUserChoiceIndex() !== -1">
+    <div>
+        <app-free *ngIf="this.isFreeChoice()"
+        (answerChanged)="onFreeAnswerChange($event)"></app-free>
+    </div>
+    <div class="eval-summary" *ngIf="!this.isFreeChoice() && this.question.answer.getUserChoiceIndex() !== -1">
         Auto-evaluare: {{this.question.answer.getUserChoiceValue()}}
     </div>
 </div>

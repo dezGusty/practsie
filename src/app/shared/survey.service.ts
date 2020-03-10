@@ -5,6 +5,7 @@ import { SurveyQuestion } from './surveyquestion.model';
 import { surveyConfig } from './surveyconfig.json';
 import { Choice } from './choice.model';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { QuestionResponseType } from './questionresponsetype.model';
 
 @Injectable({
   providedIn: 'root'
@@ -15,13 +16,7 @@ export class SurveyService {
 
   private surveys: Survey[] = [];
   private singleSurvey: Survey = null;
-  constructor(private db: AngularFirestore) {
-    // this.surveys.push(this.makeSurveyFromData(surveyConfig));
-  }
-
-  // getAllSurveys() {
-  //   return this.surveys;
-  // }
+  constructor(private db: AngularFirestore) { }
 
   doesTokenSeemValid(token: string): boolean {
     return token.startsWith('PS-');
@@ -53,10 +48,10 @@ export class SurveyService {
     return this.singleSurvey;
   }
 
-  // getSurveyByName(name: string): Survey {
-  //   return this.getAllSurveys().find(survey => survey.name === name);
-  // }
-
+  /**
+   * Creates a SurveyQuestion object part of a Survey.
+   * @param questionConfig configuration object for a single question in a survey.
+   */
   makeQuestionFromData(questionConfig: any): SurveyQuestion {
     console.log('questioncfg:', questionConfig);
 
@@ -65,9 +60,17 @@ export class SurveyService {
       result.answer.addChoice(new Choice(choiceCfg.value, choiceCfg.detail, choiceCfg.desc));
     });
 
+    if (questionConfig.type && questionConfig.type === 'free') {
+      result.answer.type = QuestionResponseType.FREE_TEXT;
+    }
+
     return result;
   }
 
+  /**
+   * Creates a new Survey object.
+   * @param configObject The JSON object containing the survey configuration.
+   */
   makeSurveyFromData(configObject: any): Survey {
     const result: Survey = new Survey('default');
     const questionsAray = configObject.questions;

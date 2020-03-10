@@ -17,6 +17,7 @@ import { AngularFireModule } from '@angular/fire';
 import { TokenGuard } from './auth/token-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { DoneComponent } from './login/done/done.component';
+import { FreeComponent } from './survey/question/free/free.component';
 
 // types: opt-out, opt-in, info
 const cookieConfig: NgcCookieConsentConfig = {
@@ -43,7 +44,8 @@ const cookieConfig: NgcCookieConsentConfig = {
     LoginComponent,
     ChoiceComponent,
     HeaderComponent,
-    DoneComponent
+    DoneComponent,
+    FreeComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),

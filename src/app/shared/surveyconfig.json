@@ -2,6 +2,101 @@
     "surveyConfig": {
         "questions": [
             {
+                "headline": "Facultate / Departament",
+                "question": "Spune-ne te rog unde studiezi.",
+                "choices": [],
+                "type": "free"
+            },
+            {
+                "headline": "An de studiu",
+                "question": "Spune-ne te rog în ce an de studiu te afli.",
+                "choices": [
+                    {
+                        "value": "Anul I"
+                    },
+                    {
+                        "value": "Anul II"
+                    },
+                    {
+                        "value": "Anul III"
+                    },
+                    {
+                        "value": "Anul IV"
+                    },
+                    {
+                        "value": "Master I"
+                    },
+                    {
+                        "value": "Master II"
+                    },
+                    {
+                        "value": "Doctorand"
+                    }
+                ]
+            },
+            {
+                "headline": "Embedded/Firmware",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de programare embedded (Firmware development) pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": "0",
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": "1",
+                        "desc": "Arduino",
+                        "detail": "(am programat doar Arduino folosind biblioteci SW deja existente.)"
+                    },
+                    {
+                        "value": "2"
+                    },
+                    {
+                        "value": "3",
+                        "desc": "Pot realiza operații de bază.",
+                        "detail": "(pot realiza operaţii de bază cu periferice simple (GPIO) folosind accesul la registrii MCU, sunt familiar cu operaţiile pe biţi şi manipularea datelor (măşti))."
+                    },
+                    {
+                        "value": "4"
+                    },
+                    {
+                        "value": "5",
+                        "desc": "Pot folosi interrupts.",
+                        "detail": "(înţeleg conceptul de întrerupere şi pot folosi periferice mai complexe (timere, comparatoare, USART) în regim de întrerupere)."
+                    },
+                    {
+                        "value": "6"
+                    },
+                    {
+                        "value": "7",
+                        "desc": "Știu interfețe de comunicare.",
+                        "detail": "(înţeleg cum funcţionează o interfaţă de comunicaţie şi diversele topologii de conectare)."
+                    },
+                    {
+                        "value": "8"
+                    },
+                    {
+                        "value": "9"
+                    },
+                    {
+                        "value": "10",
+                        "desc": "Am scris drivere",
+                        "detail": "(am implementat unul sau mai multe drivere pentru periferice de comunicaţie (I2C, SPI, CAN) / sunt familiar cu unele protocoale de comunicaţie (MODBUS, PROFIBUS))."
+                    }
+                ]
+            },
+            {
+                "headline": "Embedded - proiecte personale",
+                "question": "Enumerează proiecte personale în acest domeniu.",
+                "choices": [],
+                "type": "free"
+            },
+            {
+                "headline": "Embedded - repository personal",
+                "question": "Link către repository public cu proiecte personale embedded.",
+                "choices": [],
+                "type": "free"
+            },
+            {
                 "headline": "C/C++",
                 "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de C++ pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
