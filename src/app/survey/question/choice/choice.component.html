@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-1 col-md-1 choice-btn-area">
+  <div class="col-2 col-md-1 choice-btn-area">
     <button
-      class="btn btn-outline-secondary mb-1 choice-btn"
+      class="btn btn-outline-info mb-1 choice-btn float-right"
       [class.active]="choice.selected"
       [class.choice-active]="choice.selected"
       type="button"
@@ -11,7 +11,7 @@
       {{ choice.value }}
     </button>
   </div>
-  <div class="col-11 col-md-11">
+  <div class="col-10 col-md-11">
     <div class="choice-detail" [class.speech-bubble]="choice.detail.length > 0">
       {{ choice.detail }}
     </div>

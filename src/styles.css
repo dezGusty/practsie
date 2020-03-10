@@ -14,14 +14,14 @@
 .choice-btn {
   /* font-size: larger; */
   padding: 0.5rem 0.75rem;
-  width: 2.5rem;
+  width: 3.0rem;
 }
 .choice-btn-area {
   padding: 0.0rem 0.25rem;
 }
 
 .eval-summary {
-  background-color: #09a1af;
+  background-color: #aec4c5;
   color: #fff;
   border-style: solid;
   border-radius: 0.5rem;
@@ -30,20 +30,36 @@
 
 .speech-bubble {
   position: relative;
-  background: #eee;
-  border-radius: 0.3em;
+  padding-left: 0.3em;
+  border-radius: 0.2em;
+  border: 0.1em solid #aec4c5;
 }
 
+.speech-bubble:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: -0.45em;
+  top: 50%;
+  border-left: 0.45em solid transparent;
+  border-right: 0.45em solid  #aec4c5;
+  border-top: 0.45em solid transparent;
+  border-bottom: 0.45em solid  #aec4c5;
+  margin-top: -0.45em;
+  margin-left: -0.45em;
+}
 .speech-bubble:after {
   content: "";
   position: absolute;
-  left: 0;
-  top: 50%;
   width: 0;
   height: 0;
-  border: 0.35em solid transparent;
-  border-right-color: #eee;
-  border-left: 0;
+  left: -0.3em;
+  top: 50%;
+  border-left: 0.35em solid transparent;
+  border-right: 0.35em solid  #fff;
+  border-top: 0.35em solid transparent;
+  border-bottom: 0.35em solid  #fff;
   margin-top: -0.35em;
   margin-left: -0.35em;
 }
