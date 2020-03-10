@@ -53,8 +53,6 @@ export class SurveyService {
    * @param questionConfig configuration object for a single question in a survey.
    */
   makeQuestionFromData(questionConfig: any): SurveyQuestion {
-    console.log('questioncfg:', questionConfig);
-
     const result: SurveyQuestion = new SurveyQuestion(questionConfig.headline, questionConfig.question);
     questionConfig.choices.forEach(choiceCfg => {
       result.answer.addChoice(new Choice(choiceCfg.value, choiceCfg.detail, choiceCfg.desc));

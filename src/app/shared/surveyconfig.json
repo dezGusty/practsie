@@ -12,25 +12,32 @@
                 "question": "Spune-ne te rog în ce an de studiu te afli.",
                 "choices": [
                     {
-                        "value": "Anul I"
+                        "value": "1",
+                        "desc": "Anul I"
                     },
                     {
-                        "value": "Anul II"
+                        "value": "2",
+                        "desc": "Anul II"
                     },
                     {
-                        "value": "Anul III"
+                        "value": "3",
+                        "desc": "Anul III"
                     },
                     {
-                        "value": "Anul IV"
+                        "value": "4",
+                        "desc": "Anul IV"
                     },
                     {
-                        "value": "Master I"
+                        "value": "M1",
+                        "desc": "Master I"
                     },
                     {
-                        "value": "Master II"
+                        "value": "M2",
+                        "desc": "Master II"
                     },
                     {
-                        "value": "Doctorand"
+                        "value": "D",
+                        "desc": "Doctorand"
                     }
                 ]
             },
@@ -93,6 +100,128 @@
             {
                 "headline": "Embedded - repository personal",
                 "question": "Link către repository public cu proiecte personale embedded.",
+                "choices": [],
+                "type": "free"
+            },
+            {
+                "headline": "Electronică",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de electronică pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": "0",
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": "1",
+                        "desc": "Cunosc elementele uzuale ale unui circuit şi rolul/modul de funcţionare"
+                    },
+                    {
+                        "value": "2",
+                        "desc": "Cunosc funcţiile circuitelor logice",
+                        "detail": "(porţi logice, bistabile)"
+                    },
+                    {
+                        "value": "3",
+                        "desc": "Am cunoştinţe elementare de calcul.",
+                        "detail": "(Am cunoştinţe elementare de calcul al unui circuit cu elemente pasive)."
+                    },
+                    {
+                        "value": "4"
+                    },
+                    {
+                        "value": "5",
+                        "desc": "Pot simula un circuit digital/anlogic."
+                    },
+                    {
+                        "value": "6"
+                    },
+                    {
+                        "value": "7",
+                        "desc": "Cunosc rolul unui amplificator operaţional/comparator şi aplicaţiile uzuale."
+                    },
+                    {
+                        "value": "8",
+                        "desc": "Pot calcula PSF-ul unui circuit cu elemente pasive si active."
+                    },
+                    {
+                        "value": "9"
+                    },
+                    {
+                        "value": "10",
+                        "desc": "Pot proiecta scheme de semnal mixt (analogic şi digital) si proiecta cablajul imprimat aferent"
+                    }
+                ]
+            },
+            {
+                "headline": "Electronică - proiecte personale",
+                "question": "Enumerează proiecte personale în acest domeniu.",
+                "choices": [],
+                "type": "free"
+            },
+            {
+                "headline": "Electronică - repository personal",
+                "question": "Link către repository public cu proiecte personale de electronică.",
+                "choices": [],
+                "type": "free"
+            },
+            {
+                "headline": "Linux",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de utilizare / programare Linux pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": "0",
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": "1",
+                        "desc": "Am folosit Linux doar din interfaţa grafică"
+                    },
+                    {
+                        "value": "2",
+                        "desc": "Pot realiza operaţii elementare din linia de comandă",
+                        "detail": "(manipulare de fişiere, instalare pachete)."
+                    },
+                    {
+                        "value": "3"
+                    },
+                    {
+                        "value": "4",
+                        "desc": "Pot să instalez şi configurez aplicaţii uzuale",
+                        "detail": "(server http, server ssh / ftp)."
+                    },
+                    {
+                        "value": "5",
+                        "desc": "Știu să concep scripturi shell de complexitate medie."
+                    },
+                    {
+                        "value": "6",
+                        "desc": "Pot compila o aplicaţie pe baza unor surse descărcate de pe internet"
+                    },
+                    {
+                        "value": "7",
+                        "desc": "Pot dezvolta o aplicaţie simplă C / C++ sub Linux."
+                    },
+                    {
+                        "value": "8"
+                    },
+                    {
+                        "value": "9"
+                    },
+                    {
+                        "value": "10",
+                        "desc": "Am dezvoltat una sau mai multe aplicaţii linux (C / C++) folosind API-ul pus la dispoziţie de către sistemul de operare."
+                    }
+                ]
+            },
+            {
+                "headline": "Linux - proiecte personale",
+                "question": "Enumerează proiecte personale în acest domeniu.",
+                "choices": [],
+                "type": "free"
+            },
+            {
+                "headline": "Linux - repository personal",
+                "question": "Link către repository public cu proiecte personale de electronică.",
                 "choices": [],
                 "type": "free"
             },
@@ -331,6 +460,84 @@
                         "value": 10,
                         "desc": "Am folosit mult SQL. Nu doar la școală, dar și pentru proiecte personale.",
                         "detail": "(Știu diferențele între o baza de date relațională și una No-SQL. Știu ce înseamnă normalizare și o formă normală în contextul SQL. Am folosit SQL în combinație cu un alt limbaj.)"
+                    }
+                ]
+            },
+            {
+                "headline": "Preferință domeniu 1",
+                "question": "Spune-ne te rog prima ta opțiune în domeniul de practică.",
+                "choices": [
+                    {
+                        "value": "N",
+                        "desc": "Nu știu"
+                    },
+                    {
+                        "value": "E",
+                        "desc": "Embedded Systems"
+                    },
+                    {
+                        "value": "H",
+                        "desc": "Hardware Design (ASIC/FPGA)"
+                    },
+                    {
+                        "value": "A",
+                        "desc": "Automatizări"
+                    },
+                    {
+                        "value": "S",
+                        "desc": "Dezvoltare Software"
+                    }
+                ]
+            },
+            {
+                "headline": "Preferință domeniu 2",
+                "question": "Spune-ne te rog a 2-a ta opțiune în domeniul de practică.",
+                "choices": [
+                    {
+                        "value": "N",
+                        "desc": "Nu e cazul"
+                    },
+                    {
+                        "value": "E",
+                        "desc": "Embedded Systems"
+                    },
+                    {
+                        "value": "H",
+                        "desc": "Hardware Design (ASIC/FPGA)"
+                    },
+                    {
+                        "value": "A",
+                        "desc": "Automatizări"
+                    },
+                    {
+                        "value": "S",
+                        "desc": "Dezvoltare Software"
+                    }
+                ]
+            },
+            {
+                "headline": "Preferință domeniu 3",
+                "question": "Spune-ne te rog a 3-a ta opțiune în domeniul de practică.",
+                "choices": [
+                    {
+                        "value": "N",
+                        "desc": "Nu e cazul"
+                    },
+                    {
+                        "value": "E",
+                        "desc": "Embedded Systems"
+                    },
+                    {
+                        "value": "H",
+                        "desc": "Hardware Design (ASIC/FPGA)"
+                    },
+                    {
+                        "value": "A",
+                        "desc": "Automatizări"
+                    },
+                    {
+                        "value": "S",
+                        "desc": "Dezvoltare Software"
                     }
                 ]
             }

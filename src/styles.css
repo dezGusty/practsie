@@ -47,3 +47,9 @@
   margin-top: -0.35em;
   margin-left: -0.35em;
 }
+
+.question-counter {
+  text-align: right;
+  float: right;
+  padding-right: 0.5rem;
+}

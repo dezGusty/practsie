@@ -11,12 +11,13 @@ import { QuestionResponseType } from 'src/app/shared/questionresponsetype.model'
 export class QuestionComponent implements OnInit {
 
   @Input() question: SurveyQuestion;
+  @Input() counter: string;
+  @Input() maxcounter: string;
+
   constructor() {
   }
 
   ngOnInit(): void {
-    console.log('[q]', this.question);
-
     this.question.answer.setUserChoiceByIndex(0);
   }
 

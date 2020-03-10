@@ -1,4 +1,5 @@
 <div class="list-group-item clearfix container mb-2">
+    <span class="float-right question-counter">#{{counter}}/{{maxcounter}}</span>
     <h5>{{this.question.headline}}</h5>
     <p>{{this.question.description}}</p>
     <div role="group">
@@ -6,8 +7,7 @@
             (choiceSelected)="onChoiceSelected($event)"></app-choice>
     </div>
     <div>
-        <app-free *ngIf="this.isFreeChoice()"
-        (answerChanged)="onFreeAnswerChange($event)"></app-free>
+        <app-free *ngIf="this.isFreeChoice()" (answerChanged)="onFreeAnswerChange($event)"></app-free>
     </div>
     <div class="eval-summary" *ngIf="!this.isFreeChoice() && this.question.answer.getUserChoiceIndex() !== -1">
         Auto-evaluare: {{this.question.answer.getUserChoiceValue()}}
