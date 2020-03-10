@@ -99,7 +99,7 @@ export class SurveyService {
         free: question.answer.freeAnswer,
         val: question.answer.getUserChoiceValue()
       };
-    })
+    });
 
     surveyRef.set(obj, { merge: true });
 

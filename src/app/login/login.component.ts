@@ -16,14 +16,20 @@ export class LoginComponent implements OnInit {
   }
 
   onProceedClick() {
-    console.log('[proceed]', this.userToken);
-    
+    console.log('[proceed][', this.userToken, ']');
+
     if (this.surveySvc.doesTokenSeemValid(this.userToken)) {
       this.surveySvc.setUserToken(this.userToken);
       this.router.navigate(['/survey']);
     } else {
       this.surveySvc.setUserToken('');
       this.router.navigate(['/login']);
+    }
+  }
+
+  onInputTokenChange($event) {
+    if ($event.code === 'Enter') {
+      this.onProceedClick();
     }
   }
 }

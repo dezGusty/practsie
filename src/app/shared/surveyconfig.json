@@ -7,7 +7,7 @@
                 "choices": [
                     {
                         "value": "0",
-                        "desc": "fără experiență"
+                        "desc": "Fără experiență"
                     },
                     {
                         "value": "1"
@@ -55,7 +55,7 @@
                 "choices": [
                     {
                         "value": 0,
-                        "desc": "fără experiență"
+                        "desc": "Fără experiență"
                     },
                     {
                         "value": 1
@@ -94,6 +94,148 @@
                         "value": 10,
                         "desc": "Cred că mă pot angaja ca developer junior în .NET/C#. ",
                         "detail": "Știu arhitectura unui proiect C#, separarea pe layere. Logging, tratare excepții. Cunosc MVVM, data bindings. Am aplicat teste unitare. Am cunoștințe de REST. Folosesc fluent OOP-încapsulare, polimorfism. )"
+                    }
+                ]
+            },
+            {
+                "headline": "Java",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Java pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": 0,
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": 1
+                    },
+                    {
+                        "value": 2
+                    },
+                    {
+                        "value": 3,
+                        "desc": "Am folosit Java la școală, am făcut câteva teme.",
+                        "detail": "(Înțeleg sintaxa și firul de execuție al programului. Pot urmări un exemplu online și să îl ajustez la nevoile mele. Știu să-mi organizez codul în funcții, clase.)"
+                    },
+                    {
+                        "value": 4
+                    },
+                    {
+                        "value": 5,
+                        "desc": "Am scris destul de mult cod Java și am trecut prin multe subiecte.",
+                        "detail": "(Lucru cu fișiere, input-output IO/NIO, debugging, interfețe, clase și obiecte, colecții, moștenire, polimorfism)."
+                    },
+                    {
+                        "value": 6
+                    },
+                    {
+                        "value": 7
+                    },
+                    {
+                        "value": 8,
+                        "desc": "Am folosit mult Java. Nu doar la școală, dar și pentru proiecte personale.",
+                        "detail": "(Știu procesul de build: să configurez Maven, Gradle sau ant; să integrez un library 3rd party. Am lucrat cu baze de date - JDBC. Înțeleg conceptul de exception handling. Știu să folosesc tipuri generice. Am scris teste unitare.)"
+                    },
+                    {
+                        "value": 9
+                    },
+                    {
+                        "value": 10,
+                        "desc": "Cred că mă pot angaja ca developer junior Java",
+                        "detail": "(Am aplicat câteva design patterns, am lucrat cu multithreading si stream-uri. Am utilizat Spring. Am utilizat un framework de UI / jsf / jsp. Am cunoștințe de REST.)"
+                    }
+                ]
+            },
+            {
+                "headline": "Web development",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Web Development pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": 0,
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": 1
+                    },
+                    {
+                        "value": 2
+                    },
+                    {
+                        "value": 3,
+                        "desc": "Am folosit Web Development la școală, am făcut câteva teme.",
+                        "detail": "(Înțeleg sintaxa HTML, CSS, JS. Pot urmări un exemplu online și să îl ajustez la nevoile mele. Știu să-mi organizez codul în funcții, obiecte.)"
+                    },
+                    {
+                        "value": 4
+                    },
+                    {
+                        "value": 5,
+                        "desc": "Am făcut destul de mult web development și am trecut prin multe subiecte.",
+                        "detail": "(Înțeleg DOM-ul, tipurile de date, separarea între front- și back-end. Înțeleg request-response, înțeleg event handlers, callbacks, json)."
+                    },
+                    {
+                        "value": 6
+                    },
+                    {
+                        "value": 7
+                    },
+                    {
+                        "value": 8,
+                        "desc": "Am făcut mult web development. Nu doar la școală, dar și pentru proiecte personale.",
+                        "detail": "(Am auzit de framework-uri de UI, le-am văzut folosite. Pot manipula DOM-ul. Folosesc programare asincronă, înțeleg event loop-ul)."
+                    },
+                    {
+                        "value": 9
+                    },
+                    {
+                        "value": 10,
+                        "desc": "Cred că mă pot angaja ca developer junior pentru proiecte web.",
+                        "detail": "(Am folosit un framework de UI, Am folosit împreună cu back-end și baze de date, știu animații CSS, Sass sau Less)"
+                    }
+                ]
+            },
+            {
+                "headline": "SQL / DB",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de SQL pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": 0,
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": 1
+                    },
+                    {
+                        "value": 2
+                    },
+                    {
+                        "value": 3,
+                        "desc": "Am folosit sisteme de baze de date la școală, am făcut câteva teme.",
+                        "detail": "(Pot explica în cuvintele mele ce este o tabelă, o înregistrare, relații între tabele. Înțeleg cum pot asigura unicitatea datelor înregistrate. Știu să formulez query-uri SQL)."
+                    },
+                    {
+                        "value": 4
+                    },
+                    {
+                        "value": 5
+                    },
+                    {
+                        "value": 6
+                    },
+                    {
+                        "value": 7,
+                        "desc": "Am folosit destul sisteme de baze de date și am trecut prin multe subiecte.",
+                        "detail": "(Știu să folosesc SQL join-uri de tipuri multiple, sub-query-uri. Știu să folosesc view-uri de SQL. Știu să folosesc chei străine, chei compuse)."
+                    },
+                    {
+                        "value": 8
+                    },
+                    {
+                        "value": 9
+                    },
+                    {
+                        "value": 10,
+                        "desc": "Am folosit mult SQL. Nu doar la școală, dar și pentru proiecte personale.",
+                        "detail": "(Știu diferențele între o baza de date relațională și una No-SQL. Știu ce înseamnă normalizare și o formă normală în contextul SQL. Am folosit SQL în combinație cu un alt limbaj.)"
                     }
                 ]
             }

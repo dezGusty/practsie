@@ -10,7 +10,7 @@ export class DoneComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
 }

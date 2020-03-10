@@ -10,7 +10,12 @@
       <hr />
       <p>(Please enter your user token)</p>
       <p class="lead">
-        <input type="text" name="user_token" [(ngModel)]="userToken" />
+        <input type="text" 
+        name="user_token" 
+        [(ngModel)]="userToken" 
+        (keyup)="onInputTokenChange($event)"
+        placeholder="Token..."
+        autofocus/>
       </p>
       <p class="lead">
         <button
