@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="jumbotron">
       <h1>
@@ -9,7 +9,7 @@
           Get report
         </button>
 
-        <button type="button" class="btn btn-lg btn-outline-info" (click)="onGetDemoReport()">
+        <button type="button" class="btn btn-lg btn-outline-info ml-2" (click)="onGetDemoReport()">
           Get DUMMY report
         </button>
       </p>
@@ -19,32 +19,34 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngIf="reportData!=null">
-    <table class="table table-striped" id="reportTable" #reportTable>
-      <thead>
-        <th scope="col" class="rotate" >
-          <div *ngIf="useRotate; else noRotateBlockCnt">
-            <span>Cnt</span>
-          </div>
-          <ng-template #noRotateBlockCnt>Cnt</ng-template>
-        </th>
-        <th scope="col" class="rotate" *ngFor="let header of reportData.headers">
-          <div *ngIf="useRotate; else noRotateBlock">
-            <span>{{header}}</span>
-          </div>
-          <ng-template #noRotateBlock>{{header}}</ng-template>
-        </th>
-      </thead>
-      <tr *ngFor="let row of reportData.rows; let idx=index">
-        <th scope="row">{{idx}}</th>
-        <td *ngFor="let cell of row.data">
-          {{cell}}
-        </td>
+  <div class="row" *ngIf="reportData.rows.length > 0">
+    <div class="col-12">
+      <table class="table table-striped" id="reportTable" #reportTable>
+        <thead>
+          <th scope="col" class="rotate">
+            <div *ngIf="useRotate; else noRotateBlockCnt">
+              <span>Cnt</span>
+            </div>
+            <ng-template #noRotateBlockCnt>Cnt</ng-template>
+          </th>
+          <th scope="col" class="rotate" *ngFor="let header of reportData.headers">
+            <div *ngIf="useRotate; else noRotateBlock">
+              <span>{{header}}</span>
+            </div>
+            <ng-template #noRotateBlock>{{header}}</ng-template>
+          </th>
+        </thead>
+        <tr *ngFor="let row of reportData.rows; let idx=index">
+          <th scope="row">{{idx}}</th>
+          <td *ngFor="let cell of row.data">
+            {{cell}}
+          </td>
 
-      </tr>
-    </table>
+        </tr>
+      </table>
+    </div>
   </div>
-  <div class="row">
+  <div class="row" *ngIf="reportData.rows.length > 0">
     <button type="button" class="btn btn-lg btn-outline-info" (click)="onSelectTable()">
       Select table
     </button>

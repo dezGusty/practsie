@@ -77,7 +77,7 @@ th.rotate {
 
 th.rotate > div {
   transform: translate(0.2rem, -0.4rem) rotate(315deg);
-  width: 4rem;
+  width: 3rem;
 }
 
 th.rotate > div > span {

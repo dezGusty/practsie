@@ -23,7 +23,7 @@ export class DashComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.subscriptions.push(this.reportSvc.onReportReady.subscribe(
-      (message) => {
+      (message: any) => {
         this.reportData = this.reportSvc.reportObj;
       }
     ));
@@ -45,9 +45,14 @@ export class DashComponent implements OnInit, OnDestroy {
 
   onSelectTable() {
 
-    let el = this.reportTable.nativeElement;
+    if (!this.reportTable) {
+      return;
+    }
 
-    var body = document.body, range, sel;
+    const el = this.reportTable.nativeElement;
+
+    let range: Range;
+    let sel: Selection;
     if (document.createRange && window.getSelection) {
       range = document.createRange();
       sel = window.getSelection();
@@ -59,12 +64,6 @@ export class DashComponent implements OnInit, OnDestroy {
         range.selectNode(el);
         sel.addRange(range);
       }
-    } else {
-      // if (body.createTextRange) {
-      //   range = body.createTextRange();
-      //   range.moveToElementText(el);
-      //   range.select();
-      // }
     }
   }
 }
