@@ -46,6 +46,18 @@ export class AuthService {
 
   /**
    * Perform the login into the application via Google.
+   * @param postNavi: navigation route to be applied upon a successful log-in.
+   * It consists of an array of strings. Defaults to : ['/'].
+   * To avoid any redirect upon log-in, set this to an empty array:
+   * @example
+   * // login without redirect
+   * doGoogleLogin({ successRoute: [] });
+   * @example
+   * // login with default redirect to root.
+   * doGoogleLogin();
+   * @example
+   * // login with default redirect to /base.
+   * doGoogleLogin({ successRoute: ['base'] });
    */
   doGoogleLogin(postNavi: { successRoute: string[] } = { successRoute: ['/'] }) {
     return new Promise<any>((resolve, reject) => {
@@ -60,9 +72,11 @@ export class AuthService {
           this.issueTokenRetrieval();
           this.updateAndCacheUserAfterLogin(res.user);
           this.onSignInOut.emit('signin-done');
-          console.log('[login] navigating to root');
+          if (postNavi?.successRoute?.length > 0) {
+            console.log('[login] navigating to route ', postNavi.successRoute);
+            this.router.navigate(postNavi.successRoute);
+          }
 
-          this.router.navigate(postNavi.successRoute);
           resolve(res);
         })
         .catch((error) => {
