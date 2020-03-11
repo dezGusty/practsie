@@ -69,3 +69,18 @@
   float: right;
   padding-right: 0.5rem;
 }
+
+th.rotate {
+  height: 15rem;
+  white-space: nowrap;
+}
+
+th.rotate > div {
+  transform: translate(0.2rem, -0.4rem) rotate(315deg);
+  width: 4rem;
+}
+
+th.rotate > div > span {
+  border-bottom: 0.1rem solid #aec4c5;
+  padding: 0.1rem 0.2rem;
+}

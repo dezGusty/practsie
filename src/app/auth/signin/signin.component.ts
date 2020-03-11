@@ -17,7 +17,7 @@ export class SigninComponent implements OnInit {
   tryGoogleLogin() {
     this.authSvc.doGoogleLogin({ successRoute: [] })
       .then(res => {
-        console.log('[signin] navigating to root');
+        console.log('[signin] navigating to dash');
         this.router.navigate(['/dash']);
       });
   }

@@ -6,6 +6,8 @@ import { surveyConfig } from './surveyconfig.json';
 import { Choice } from './choice.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { QuestionResponseType } from './questionresponsetype.model';
+import { TableData, TableRow } from './tabledata.model';
+import { AnswerSerialization } from './answerserialization.model';
 
 @Injectable({
   providedIn: 'root'
@@ -89,7 +91,7 @@ export class SurveyService {
     const docName = '/surveys/' + survey.userToken;
     console.log('docname:', docName);
     const surveyRef = this.db.doc(docName).ref;
-    const obj = {};
+    const obj: AnswerSerialization = {};
     survey.questions.forEach(question => {
       console.log('key:', question.headline);
       console.log('value.type:', question.answer.type);
@@ -104,14 +106,5 @@ export class SurveyService {
 
     surveyRef.set(obj, { merge: true });
 
-  }
-
-  public getReportOfAllDocs() {
-    this.db.collection('surveys').get().toPromise().then(function (querySnapshot) {
-      querySnapshot.forEach((doc) => {
-        // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, ' => ', doc.data());
-      });
-    });
   }
 }
