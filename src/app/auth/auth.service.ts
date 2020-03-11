@@ -136,4 +136,24 @@ export class AuthService {
     const result = (this.token !== null);
     return result;
   }
+
+  public doesRoleContainOrganizer(role: UserRoles) {
+    if (role && role.organizer) {
+      return role.organizer;
+    }
+    return false;
+  }
+
+  isAuthenticatedAsOrganizer(): boolean {
+    if (!this.cachedUser || !this.cachedUser.roles) {
+      const storedValue = this.appStorage.getAppStorageItem('roles');
+      if (!storedValue) {
+        return this.doesRoleContainOrganizer(this.cachedUser.roles);
+      }
+      const roles: UserRoles = JSON.parse(storedValue);
+      return this.doesRoleContainOrganizer(roles);
+    }
+
+    return this.doesRoleContainOrganizer(this.cachedUser.roles);
+  }
 }

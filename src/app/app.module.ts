@@ -24,6 +24,7 @@ import { SigninComponent } from './auth/signin/signin.component';
 import { DashComponent } from './dash/dash.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { AppStorage } from './shared/app-storage';
+import { OrganizerGuard } from './auth/organizer-guard.service';
 
 // types: opt-out, opt-in, info
 const cookieConfig: NgcCookieConsentConfig = {
@@ -68,6 +69,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     SurveyService,
     AppStorage,
     AuthGuard,
+    OrganizerGuard,
     TokenGuard
   ],
   bootstrap: [AppComponent]

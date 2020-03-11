@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SurveyService } from '../shared/survey.service';
 
 @Component({
   selector: 'app-dash',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashComponent implements OnInit {
 
-  constructor() { }
+  constructor(public surveySvc: SurveyService) { }
 
   ngOnInit(): void {
   }
 
+  onGetReport() {
+    this.surveySvc.getReportOfAllDocs();
+  }
 }

@@ -7,6 +7,7 @@ import { DoneComponent } from './login/done/done.component';
 import { DashComponent } from './dash/dash.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { SigninComponent } from './auth/signin/signin.component';
+import { OrganizerGuard } from './auth/organizer-guard.service';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -14,7 +15,7 @@ const appRoutes: Routes = [
   { path: 'survey', canActivate: [TokenGuard], component: SurveyComponent },
   { path: 'done', component: DoneComponent },
   { path: 'signin', component: SigninComponent },
-  { path: 'dash', canActivate: [AuthGuard], component: DashComponent }
+  { path: 'dash', canActivate: [AuthGuard, OrganizerGuard], component: DashComponent }
 ];
 
 @NgModule({
