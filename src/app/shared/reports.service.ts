@@ -36,7 +36,7 @@ export class ReportsService {
 
   public triggerReportOfAllDocsAsync() {
     this.reportObj = new TableData();
-    this.db.collection('surveys').get().toPromise().then((querySnapshot) => {
+    this.db.collection('surveys_21').get().toPromise().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
 
         const docData = doc.data();

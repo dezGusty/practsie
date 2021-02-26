@@ -88,15 +88,11 @@ export class SurveyService {
       console.log('[survey] token length is invalid!');
       return;
     }
-    const docName = '/surveys/' + survey.userToken;
-    console.log('docname:', docName);
+    const docName = '/surveys_21/' + survey.userToken;
     const surveyRef = this.db.doc(docName).ref;
     const obj: AnswerSerialization = {};
+
     survey.questions.forEach(question => {
-      console.log('key:', question.headline);
-      console.log('value.type:', question.answer.type);
-      console.log('value.free:', question.answer.freeAnswer);
-      console.log('value.val:', question.answer.getUserChoiceValue());
       obj[question.headline] = {
         type: question.answer.type,
         free: question.answer.freeAnswer,
@@ -104,7 +100,7 @@ export class SurveyService {
       };
     });
 
+    console.log('[save]', obj);
     surveyRef.set(obj, { merge: true });
-
   }
 }
