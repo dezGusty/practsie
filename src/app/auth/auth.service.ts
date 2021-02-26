@@ -1,7 +1,7 @@
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import { User, UserRoles } from '../shared/user.model';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,7 @@ export class AuthService {
   /**
    * Store the auth token for quick access.
    */
-  private token: string;
+  private token: string = null;
 
   /**
    * Store a cache for the currently logged in user.
@@ -25,7 +25,7 @@ export class AuthService {
    * shall be performed on the data read at the login time. The user needs to log-in
    * again in order to read any updated permissions.
    */
-  private cachedUser: User;
+  private cachedUser: User = null;
 
   /**
    * Use this event emitter to inform subscribers that a sign-in event took place or sign-out event
@@ -64,10 +64,12 @@ export class AuthService {
       const provider = new firebase.auth.GoogleAuthProvider();
       provider.addScope('profile');
       provider.addScope('email');
-      this.afAuth.auth
+      this.afAuth
         .signInWithPopup(provider)
         .then(res => {
           console.log('[firebase login]');
+
+          // let token = res.credential.accessToken;
 
           this.issueTokenRetrieval();
           this.updateAndCacheUserAfterLogin(res.user);
@@ -90,15 +92,15 @@ export class AuthService {
   }
 
   private issueTokenRetrieval() {
-    if (!this.afAuth.auth || !this.afAuth.auth.currentUser) {
+    if (!this.afAuth || !this.afAuth.currentUser) {
       return;
     }
 
     // Request the token. Store it when received.
-    this.afAuth.auth.currentUser.getIdToken()
+    this.afAuth.currentUser
       .then(
-        (token: string) => {
-          this.token = token;
+        (usr: firebase.User) => {
+          this.token = usr.uid;
         }
       ).catch((error) => {
         console.warn('[auth] Failed to retrieve token', error);
@@ -135,7 +137,7 @@ export class AuthService {
       } else {
         // New user. Create the user doc.
         const obj = { ...userData };
-        console.log('User does not exist. Should create');
+        console.log('[auth] User does not exist. Should create');
         this.db.doc('users/' + userPath).set(obj);
         this.cachedUser = obj;
         this.appStorage.setAppStorageItem('roles', JSON.stringify(this.cachedUser.roles));

@@ -7,7 +7,7 @@ export interface UserRoles {
 export class User {
     email: string;
     photoURL: string;
-    roles: UserRoles;
+    roles?: UserRoles;
 
     fcmTokens?: { [token: string]: true };
 

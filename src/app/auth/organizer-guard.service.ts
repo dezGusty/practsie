@@ -12,7 +12,7 @@ export class OrganizerGuard implements CanActivate {
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authSvc.isAuthenticatedAsOrganizer()) {
+    if (this.authSvc?.isAuthenticatedAsOrganizer()) {
       return true;
     } else {
       return false;
