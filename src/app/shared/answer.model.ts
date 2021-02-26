@@ -5,7 +5,7 @@ export class Answer {
     public choices: Choice[] = [];
     public freeAnswer = '';
     private userSelectedChoiceIndex = -1;
-    constructor(public type: QuestionResponseType = QuestionResponseType.CHOICE) {
+    constructor(public type: QuestionResponseType = QuestionResponseType.choiceResponse) {
 
     }
 
@@ -45,7 +45,7 @@ export class Answer {
     }
 
     public getUserChoiceValue(): string {
-        if (this.type === QuestionResponseType.CHOICE){
+        if (this.type === QuestionResponseType.choiceResponse){
             return this.choices[this.userSelectedChoiceIndex].value;
         }
 

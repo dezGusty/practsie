@@ -52,6 +52,7 @@ export class SurveyService {
 
   /**
    * Creates a SurveyQuestion object part of a Survey.
+   *
    * @param questionConfig configuration object for a single question in a survey.
    */
   makeQuestionFromData(questionConfig: any): SurveyQuestion {
@@ -61,7 +62,7 @@ export class SurveyService {
     });
 
     if (questionConfig.type && questionConfig.type === 'free') {
-      result.answer.type = QuestionResponseType.FREE_TEXT;
+      result.answer.type = QuestionResponseType.freeTextResponse;
     }
 
     return result;
@@ -69,6 +70,7 @@ export class SurveyService {
 
   /**
    * Creates a new Survey object.
+   *
    * @param configObject The JSON object containing the survey configuration.
    */
   makeSurveyFromData(configObject: any): Survey {

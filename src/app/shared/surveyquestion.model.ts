@@ -6,6 +6,6 @@ export class SurveyQuestion {
     public answer: Answer;
 
     constructor(public headline: string, public description: string) {
-        this.answer = new Answer(QuestionResponseType.CHOICE);
+        this.answer = new Answer(QuestionResponseType.choiceResponse);
     }
 }

@@ -7,8 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class FreeComponent implements OnInit {
 
-  public userAnswer;
   @Output() answerChanged = new EventEmitter<string>();
+  public userAnswer;
   constructor() { }
 
   ngOnInit(): void {

@@ -22,7 +22,7 @@ export class QuestionComponent implements OnInit {
   }
 
   isFreeChoice(): boolean {
-    return this.question.answer.type === QuestionResponseType.FREE_TEXT;
+    return this.question.answer.type === QuestionResponseType.freeTextResponse;
   }
 
   onChoiceSelected($event) {

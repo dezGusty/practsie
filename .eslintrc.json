@@ -47,7 +47,9 @@
           "off",
           "always"
         ],
-        "import/order": "off"
+        "import/order": "off",
+        "no-shadow": "off",
+        "@typescript-eslint/no-shadow": ["error"]
       }
     },
     {

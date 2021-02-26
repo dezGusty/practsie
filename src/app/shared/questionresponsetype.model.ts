@@ -1,4 +1,4 @@
 export enum QuestionResponseType {
-    CHOICE = 'selection',
-    FREE_TEXT = 'freetext'
+    choiceResponse = 'selection',
+    freeTextResponse = 'freetext'
 }
