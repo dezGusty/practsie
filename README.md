@@ -21,8 +21,20 @@ const firebaseConfig = {
 };
 ```
 
+> Where can you find the configuration object?
+
+Go to `Project Overview` ➡ `Project settings`.
+![Project settings](./docs/firebase-cfg-01.png)
+
+Go to the General tab, Web apps and for you Web app, click the Config radio button.
+You should see the Firebase SDK snippet.
+![Firebase SDK snippet](./docs/firebase-cfg-02.png)
+
+> Where to store the configuration object?
+
 In order not to store this in the repository, the configuration is stored in a source file added to the ignore list.
-Please manually create the file `environments/firebase-data.ts` and paste the configuration object in there from the Firebase SDK snippet.
+Please manually create the file `src/environments/firebase-data.ts` and paste the configuration object in there from the Firebase SDK snippet.
+A quick way do work with the data is to copy the `src/environments/firebase-data-dummy.ts` file and edit it.
 
 ## Development server
 
