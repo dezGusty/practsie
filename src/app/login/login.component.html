@@ -32,12 +32,12 @@
       <hr>
       <div class="mb-2">
         <label for="tokenInput" class="form-label">Vă rugăm să introduceți codul primit!</label>
-        <input id="tokenInput" class="form-control form-control-info" type="text" name="user_token" [(ngModel)]="userToken"
+        <input id="tokenInput" class="form-control form-control" type="text" name="user_token" [(ngModel)]="userToken"
           (keyup)="onInputTokenChange($event)" placeholder="Please enter the received token..." autofocus />
       </div>
       <!-- <hr> -->
       <div class="mb-2">
-        <button type="button" class="btn btn-outline-info" (click)="onProceedClick()">
+        <button type="button" class="btn btn-lg btn-gs" (click)="onProceedClick()">
           Proceed
         </button>
       </div>
