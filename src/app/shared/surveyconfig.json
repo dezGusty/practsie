@@ -464,6 +464,153 @@
                 ]
             },
             {
+                "headline": "HW - Proiectarea Circuite Digitale",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Circuite Digitale si Proiectarea acestora, pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": 0,
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": 1,
+                        "desc": "Cunoștințe de bază a funcționării Circuitelor Digitale simple, învațate în școală"
+                    },
+                    {
+                        "value": 2
+                    },
+                    {
+                        "value": 3,
+                        "desc": "Cunoașterea funcționării Circuitelor Digitale și proiectarea acestora folosind limbaje de descriere HW (VHDL/Verilog)",
+                        "detail": "(Realizarea câtorva teme simple în școală - modelare în Verilog/VHDL, simulare, etc.)"
+                    },
+                    {
+                        "value": 4
+                    },
+                    {
+                        "value": 5,
+                        "desc": "Cunoașterea în detaliu a Circuitelor Digitale și Proiectarea acestora folosind limbaje de descriere HW (VHDL/Verilog)",
+                        "detail": "(Proiecte de complexitate medie - proiectare, simulare)"
+                    },
+                    {
+                        "value": 6
+                    },
+                    {
+                        "value": 7
+                    },
+                    {
+                        "value": 8,
+                        "desc": "Proiecte ample (structuri complexe, protocoale de bus, memorii, CPU cores, etc), atât la școală cât și pentru proiecte personale",
+                        "detail": "(Implementare, simulare)"
+                    },
+                    {
+                        "value": 9
+                    },
+                    {
+                        "value": 10,
+                        "desc": "Cred că mă pot angaja ca HW developer junior",
+                        "detail": "(Cunosc în detaliu modalitățile de proiectare și simulare a Circuitelor Digitale)"
+                    }
+                ]
+            },
+            {
+                "headline": "HW - Implementarea Circuitelor Digitale folosind platforme FPGA",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Implementare a Circuitelor Digitale folosind platforme FPGA, pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": 0,
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": 1,
+                        "desc": "Cunostințe generale despre platforme FPGA"
+                    },
+                    {
+                        "value": 2
+                    },
+                    {
+                        "value": 3,
+                        "desc": "Cunoștințe minimale a modalităților de implementare cu FPGA",
+                        "detail": "(realizarea câtorva teme simple în școală / particular)"
+                    },
+                    {
+                        "value": 4
+                    },
+                    {
+                        "value": 5,
+                        "desc": "Cunoașterea în detaliu a modalităților de implementare cu FPGA",
+                        "detail": "(Proiecte de complexitate medie)"
+                    },
+                    {
+                        "value": 6
+                    },
+                    {
+                        "value": 7
+                    },
+                    {
+                        "value": 8,
+                        "desc": "Proiecte ample implementate cu FPGA",
+                        "detail": "(Implementare, analiză, optimizare, debug)"
+                    },
+                    {
+                        "value": 9
+                    },
+                    {
+                        "value": 10,
+                        "desc": "Cred că mă pot angaja ca HW developer junior",
+                        "detail": "(Cunosc în detaliu modalitățile de implementare cu FPGA)"
+                    }
+                ]
+            },
+            {
+                "headline": "HW - Verificarea Funcțională a Proiectelor de Circuite Digitale",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Verificare Functionala a Proiectelor de Circuite Digitale, pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": 0,
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": 1,
+                        "desc": "Cunoștințe generale despre ce înseamnă Verificarea Funcțională"
+                    },
+                    {
+                        "value": 2
+                    },
+                    {
+                        "value": 3,
+                        "desc": "Cunoștințe minimale ale modalităților de Verificare Funcțională",
+                        "detail": "(realizarea câtorva teme simple în școală / particular)"
+                    },
+                    {
+                        "value": 4
+                    },
+                    {
+                        "value": 5,
+                        "desc": "Cunoașterea în detaliu a modalităților de Verificare Funcțională folosind limbaje de verificare",
+                        "detail": "(SystemVerilog, e, VHDL, etc. – proiecte de complexitate medieProiecte de complexitate medie)"
+                    },
+                    {
+                        "value": 6
+                    },
+                    {
+                        "value": 7
+                    },
+                    {
+                        "value": 8,
+                        "desc": "Proiecte ample de Verificare Funcțională folosind limbaje de verificare și metodologii de verificare",
+                        "detail": "(ex: UVM - implementare medii de verificare, simulare)"
+                    },
+                    {
+                        "value": 9
+                    },
+                    {
+                        "value": 10,
+                        "desc": "Cred că mă pot angaja ca Junior HW Verification Engineer",
+                        "detail": "(Cunosc în detaliu modalitățile de implementare a mediilor de verificare, simulare, debug)"
+                    }
+                ]
+            },
+            {
                 "headline": "Preferință domeniu 1",
                 "question": "Spune-ne te rog prima ta opțiune în domeniul de practică.",
                 "choices": [
