@@ -130,7 +130,7 @@
                     },
                     {
                         "value": "5",
-                        "desc": "Pot simula un circuit digital/anlogic."
+                        "desc": "Pot simula un circuit digital/analogic."
                     },
                     {
                         "value": "6"
@@ -522,14 +522,14 @@
                     },
                     {
                         "value": 1,
-                        "desc": "Cunostințe generale despre platforme FPGA"
+                        "desc": "Cunoștințe generale despre platforme FPGA"
                     },
                     {
                         "value": 2
                     },
                     {
                         "value": 3,
-                        "desc": "Cunoștințe minimale a modalităților de implementare cu FPGA",
+                        "desc": "Cunoștințe minimale ale modalităților de implementare cu FPGA",
                         "detail": "(realizarea câtorva teme simple în școală / particular)"
                     },
                     {
