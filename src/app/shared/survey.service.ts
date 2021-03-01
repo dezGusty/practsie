@@ -16,7 +16,6 @@ export class SurveyService {
 
   private userToken = '';
 
-  private surveys: Survey[] = [];
   private singleSurvey: Survey = null;
   constructor(private db: AngularFirestore) { }
 
