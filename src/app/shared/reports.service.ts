@@ -1,12 +1,12 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { TableData, TableRow } from './tabledata.model';
 import { AnswerSerialization } from './answerserialization.model';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { surveyConfig } from './surveyconfig.json';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { SurveyService } from './survey.service';
 import { Survey } from './survey.model';
 import { SurveyQuestion } from './surveyquestion.model';
 import { SettingsService } from './settings.service';
+const surveyConfig = require('./surveyconfig.json').surveyConfig;
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,6 @@ export class ReportsService {
   public reportObj: TableData;
 
   public onReportReady: EventEmitter<string> = new EventEmitter<string>();
-
 
   constructor(private db: AngularFirestore, private surveySvc: SurveyService, private settingsSvc: SettingsService) { }
 

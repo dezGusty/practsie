@@ -8,6 +8,6 @@ export class SettingsService {
   constructor() { }
 
   public getSurveyCollection(): string {
-    return 'surveys_21';
+    return 'surveys_22';
   }
 }

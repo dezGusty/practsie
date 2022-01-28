@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Survey } from './survey.model';
 import { SurveyQuestion } from './surveyquestion.model';
 
-import { surveyConfig } from './surveyconfig.json';
 import { Choice } from './choice.model';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { QuestionResponseType } from './questionresponsetype.model';
 import { AnswerSerialization } from './answerserialization.model';
 import { SettingsService } from './settings.service';
+const surveyConfig = require('./surveyconfig.json').surveyConfig;
 
 @Injectable({
   providedIn: 'root'
