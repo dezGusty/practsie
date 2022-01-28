@@ -477,6 +477,12 @@
                 ]
             },
             {
+                "headline": "Alte tehnologii și unelte",
+                "question": "Enumerează alte tehnologii și unelte pe care le-ai folosit și cu care ești familiarizat (ex: Python, Git, Docker/Kubernetes, Cloud)",
+                "choices": [],
+                "type": "free"
+            },
+            {
                 "headline": "Proiecte personale (software și/sau hardware)",
                 "question": "Enumerează proiecte personale notabile.",
                 "choices": [],
@@ -497,16 +503,8 @@
                         "desc": "Nu știu"
                     },
                     {
-                        "value": "E",
-                        "desc": "Embedded Systems"
-                    },
-                    {
                         "value": "H",
                         "desc": "Hardware Design (ASIC/FPGA)"
-                    },
-                    {
-                        "value": "A",
-                        "desc": "Automatizări"
                     },
                     {
                         "value": "S",
@@ -523,38 +521,8 @@
                         "desc": "Nu e cazul"
                     },
                     {
-                        "value": "E",
-                        "desc": "Embedded Systems"
-                    },
-                    {
                         "value": "H",
                         "desc": "Hardware Design (ASIC/FPGA)"
-                    },
-                    {
-                        "value": "A",
-                        "desc": "Automatizări"
-                    },
-                    {
-                        "value": "S",
-                        "desc": "Dezvoltare Software"
-                    }
-                ]
-            },
-            {
-                "headline": "Preferință domeniu 3",
-                "question": "Spune-ne te rog a 3-a ta opțiune în domeniul de practică.",
-                "choices": [
-                    {
-                        "value": "N",
-                        "desc": "Nu e cazul"
-                    },
-                    {
-                        "value": "H",
-                        "desc": "Hardware Design (ASIC/FPGA)"
-                    },
-                    {
-                        "value": "A",
-                        "desc": "Automatizări"
                     },
                     {
                         "value": "S",
