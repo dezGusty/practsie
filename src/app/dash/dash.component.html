@@ -1,15 +1,15 @@
-<div class="container-fluid">
+<div class="container-fluid mx-3">
   <div class="row">
     <div class="jumbotron">
       <h1>
         Dash
       </h1>
       <p class="lead">
-        <button type="button" class="btn btn-lg btn-outline-info" (click)="onGetReport()">
+        <button type="button" class="btn btn-gs btn-outline-info" (click)="onGetReport()">
           Get report
         </button>
 
-        <button type="button" class="btn btn-lg btn-outline-info ml-2" (click)="onGetDemoReport()">
+        <button type="button" class="btn btn-gs btn-outline-info" (click)="onGetDemoReport()">
           Get DUMMY report
         </button>
       </p>
@@ -47,7 +47,7 @@
     </div>
   </div>
   <div class="row" *ngIf="reportData.rows.length > 0">
-    <button type="button" class="btn btn-lg btn-outline-info" (click)="onSelectTable()">
+    <button type="button" class="btn btn-gs btn-outline-info" (click)="onSelectTable()">
       Select table
     </button>
   </div>

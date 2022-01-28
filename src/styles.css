@@ -128,13 +128,12 @@ input.form-control:focus {
 }
 
 @media (prefers-color-scheme: dark) {
-
   a {
     font-weight: 700;
     color: #0cc;
   }
 
-  a:hover{
+  a:hover {
     font-weight: 700;
     color: #00ffb9;
   }
@@ -173,7 +172,7 @@ input.form-control:focus {
     border-right: 0;
     color: #fff;
   }
-  
+
   /*TODO: this may be a bad idea, changing the behavior of the focus*/
   input.form-control:focus {
     border-bottom-color: #00ffb9;
@@ -182,7 +181,7 @@ input.form-control:focus {
   .speech-bubble {
     border: 0.1em solid #aec4c5;
   }
-  
+
   .speech-bubble:before {
     border-right: 0.45em solid #aec4c5;
     border-bottom: 0.45em solid #aec4c5;
@@ -190,5 +189,13 @@ input.form-control:focus {
   .speech-bubble:after {
     border-right: 0.35em solid #001f39;
     border-bottom: 0.35em solid #001f39;
+  }
+
+  th{
+    color: #0cc;
+  }
+
+  td {
+    color: #fff;
   }
 }
