@@ -51,3 +51,5 @@ src/environments/firebase-data.ts
 # the lock file changes too often
 package-lock.json
 firebase-debug.log
+
+.angular/

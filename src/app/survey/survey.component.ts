@@ -10,9 +10,10 @@ import { Router } from '@angular/router';
 })
 export class SurveyComponent implements OnInit {
 
+  public survey: Survey;
+
   constructor(private surveySvc: SurveyService, private router: Router) { }
 
-  public survey: Survey;
   ngOnInit(): void {
     this.survey = this.surveySvc.getDefaultSurvey();
   }

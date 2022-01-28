@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { Survey } from './survey.model';
 import { SurveyQuestion } from './surveyquestion.model';
 
-import { surveyConfig } from './surveyconfig.json';
 import { Choice } from './choice.model';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { QuestionResponseType } from './questionresponsetype.model';
-import { TableData, TableRow } from './tabledata.model';
 import { AnswerSerialization } from './answerserialization.model';
+import { SettingsService } from './settings.service';
+const surveyConfig = require('./surveyconfig.json').surveyConfig;
 
 @Injectable({
   providedIn: 'root'
@@ -16,9 +16,8 @@ export class SurveyService {
 
   private userToken = '';
 
-  private surveys: Survey[] = [];
   private singleSurvey: Survey = null;
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private settingsSvc: SettingsService) { }
 
   doesTokenSeemValid(token: string): boolean {
     return token.startsWith('PS-');
@@ -55,7 +54,7 @@ export class SurveyService {
    *
    * @param questionConfig configuration object for a single question in a survey.
    */
-  makeQuestionFromData(questionConfig: any): SurveyQuestion {
+  public makeQuestionFromData(questionConfig: any): SurveyQuestion {
     const result: SurveyQuestion = new SurveyQuestion(questionConfig.headline, questionConfig.question);
     questionConfig.choices.forEach(choiceCfg => {
       result.answer.addChoice(new Choice(choiceCfg.value, choiceCfg.detail, choiceCfg.desc));
@@ -73,7 +72,7 @@ export class SurveyService {
    *
    * @param configObject The JSON object containing the survey configuration.
    */
-  makeSurveyFromData(configObject: any): Survey {
+  public makeSurveyFromData(configObject: any): Survey {
     const result: Survey = new Survey('default');
     const questionsAray = configObject.questions;
 
@@ -90,7 +89,7 @@ export class SurveyService {
       console.log('[survey] token length is invalid!');
       return;
     }
-    const docName = '/surveys_21/' + survey.userToken;
+    const docName = '/' + this.settingsSvc.getSurveyCollection() +'/' + survey.userToken;
     const surveyRef = this.db.doc(docName).ref;
     const obj: AnswerSerialization = {};
 

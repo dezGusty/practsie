@@ -11,13 +11,13 @@ import { Subscription } from 'rxjs';
 })
 export class DashComponent implements OnInit, OnDestroy {
 
+  @ViewChild('reportTable', { static: false }) public reportTable: ElementRef;
+
   public reportData: TableData = new TableData();
 
   public useRotate = true;
 
   private subscriptions: Subscription[] = [];
-
-  @ViewChild('reportTable', { static: false }) public reportTable: ElementRef;
 
   constructor(public reportSvc: ReportsService) { }
 

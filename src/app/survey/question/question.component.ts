@@ -30,13 +30,11 @@ export class QuestionComponent implements OnInit {
     if (null == selectedChoice) {
       return;
     }
-    console.log('selected: ', selectedChoice);
 
     this.question.answer.setUserChoiceByValue(selectedChoice.value);
   }
 
   onFreeAnswerChange($event) {
-    console.log('change', $event);
     this.question.answer.freeAnswer = $event;
   }
 }

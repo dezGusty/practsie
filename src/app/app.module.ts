@@ -4,8 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
-import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -15,7 +15,7 @@ import { LoginComponent } from './login/login.component';
 import { SurveyService } from './shared/survey.service';
 import { ChoiceComponent } from './survey/question/choice/choice.component';
 import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire';
+import { AngularFireModule } from '@angular/fire/compat';
 import { TokenGuard } from './auth/token-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { DoneComponent } from './login/done/done.component';

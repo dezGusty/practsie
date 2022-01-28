@@ -1,9 +1,9 @@
-import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Injectable, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import { User, UserRoles } from '../shared/user.model';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Subscription } from 'rxjs';
 import { AppStorage } from '../shared/app-storage';
 
@@ -11,6 +11,12 @@ import { AppStorage } from '../shared/app-storage';
   providedIn: 'root'
 })
 export class AuthService {
+
+  /**
+   * Use this event emitter to inform subscribers that a sign-in event took place or sign-out event
+   * is about to take place.
+   */
+  public onSignInOut: EventEmitter<string> = new EventEmitter<string>();
 
   // -------------------- internals -----------------------------
 
@@ -27,14 +33,7 @@ export class AuthService {
    */
   private cachedUser: User = null;
 
-  /**
-   * Use this event emitter to inform subscribers that a sign-in event took place or sign-out event
-   * is about to take place.
-   */
-  public onSignInOut: EventEmitter<string> = new EventEmitter<string>();
-
   private subscription: Subscription;
-
 
   // -------------------- functionality -----------------------------
 
@@ -46,6 +45,7 @@ export class AuthService {
 
   /**
    * Perform the login into the application via Google.
+   *
    * @param postNavi: navigation route to be applied upon a successful log-in.
    * It consists of an array of strings. Defaults to : ['/'].
    * To avoid any redirect upon log-in, set this to an empty array:
@@ -69,8 +69,6 @@ export class AuthService {
         .then(res => {
           console.log('[firebase login]');
 
-          // let token = res.credential.accessToken;
-
           this.issueTokenRetrieval();
           this.updateAndCacheUserAfterLogin(res.user);
           this.onSignInOut.emit('signin-done');
@@ -91,21 +89,6 @@ export class AuthService {
     });
   }
 
-  private issueTokenRetrieval() {
-    if (!this.afAuth || !this.afAuth.currentUser) {
-      return;
-    }
-
-    // Request the token. Store it when received.
-    this.afAuth.currentUser
-      .then(
-        (usr: firebase.User) => {
-          this.token = usr.uid;
-        }
-      ).catch((error) => {
-        console.warn('[auth] Failed to retrieve token', error);
-      });
-  }
 
   updateAndCacheUserAfterLogin(authdata: firebase.User) {
     const userData = new User(authdata);
@@ -171,5 +154,21 @@ export class AuthService {
     }
 
     return this.doesRoleContainOrganizer(this.cachedUser.roles);
+  }
+
+  private issueTokenRetrieval() {
+    if (!this.afAuth || !this.afAuth.currentUser) {
+      return;
+    }
+
+    // Request the token. Store it when received.
+    this.afAuth.currentUser
+      .then(
+        (usr: firebase.User) => {
+          this.token = usr.uid;
+        }
+      ).catch((error) => {
+        console.warn('[auth] Failed to retrieve token', error);
+      });
   }
 }

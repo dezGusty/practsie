@@ -2,11 +2,12 @@
   <div class="row">
     <div class="jumbotron">
       <h1>
-        Login. Chestionar de auto-evaluare.
+        📝 Chestionar de auto-evaluare
       </h1>
       <p>Dacă v-aţi depus deja CV-ul la noi vă rugăm să completaţi acest chestionar în vederea finalizării procesului de
         selecţie pentru programul de practică.</p>
-      <p>IMPORTANT: Completaţi formularul doar după depunerea CV-ului în caz contrar formularul nu va fi luat în calcul
+      <p>⚠ IMPORTANT: Completaţi formularul doar după depunerea CV-ului în caz contrar formularul nu va fi luat în
+        calcul
         şi va fi şters. De asemenea, depunerea CV-ului fără completarea acestui formular nu este suficientă pentru a fi
         considerat în procesul de selecţie.</p>
       <p>Dacă nu v-aţi depus deja CV-ul şi sunteţi interesaţi de programul de practică, puteţi începe înregistrarea la
@@ -28,21 +29,27 @@
         </li>
       </ul>
 
+      <p>
+        Despre datele personale colectate în cadrul acestei aplicații:
+      </p>
+      <ul>
+        <li>Datele vor fi conectate doar la tokenul pe care îl introduci.</li>
+        <li>Datele vor fi folosite pentru procesul de evaluare.</li>
+        <li>Datele vor fi disponibile în această aplicație doar pentru un termen limitat (~6 luni de la introducere), după care vor fi eliminate.</li>
+        <li>Datele pot fi stocate și în alte sisteme, dacă ți-ai dat acordul pentru stocarea lor.</li>
+      </ul>
       <hr>
-      <p class="lead">
-        Vă rugăm să introduceți codul primit!
-      </p>
-      <hr />
-      <p>(Please enter your user token)</p>
-      <p class="lead input-group-text">
-        <input class="form-control" type="text" name="user_token" [(ngModel)]="userToken" (keyup)="onInputTokenChange($event)"
-          placeholder="Token..." autofocus />
-      </p>
-      <p class="lead">
-        <button type="button" class="btn btn-lg btn-outline-info" (click)="onProceedClick()">
+      <div class="mb-2">
+        <label for="tokenInput" class="form-label">Vă rugăm să introduceți codul primit!</label>
+        <input id="tokenInput" class="form-control form-control" type="text" name="user_token" [(ngModel)]="userToken"
+          (keyup)="onInputTokenChange($event)" placeholder="Please enter the received token..." autofocus />
+      </div>
+      <!-- <hr> -->
+      <div class="mb-2">
+        <button type="button" class="btn btn-lg btn-gs" (click)="onProceedClick()">
           Proceed
         </button>
-      </p>
+      </div>
     </div>
   </div>
 </div>
