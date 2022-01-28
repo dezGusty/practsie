@@ -1,12 +1,24 @@
 /*Color styles*/
+
+body {
+  background-color: #fff;
+  color: #000000;
+}
+
 .btn-gs {
   border-color: #3198a7;
   border-radius: 0;
-  color:  #3198a7;
+  color: #3198a7;
 }
 
-.btn-gs:hover, .btn-gs:active {
-  background-image: linear-gradient(to right, #54FEB7 0%, #51F2CA  51%, #4DE6DD  100%)
+.btn-gs:hover,
+.btn-gs:active {
+  background-image: linear-gradient(
+    to right,
+    #54feb7 0%,
+    #51f2ca 51%,
+    #4de6dd 100%
+  );
 }
 
 .choice-detail {
@@ -30,6 +42,16 @@
   background-color: #aec4c5;
   color: #fff;
   padding-left: 1rem;
+}
+
+.list-group-item {
+  color: #212529;
+  background-color: #fff;
+}
+
+.navbar {
+  background-color: inherit;
+  color: inherit;
 }
 
 .speech-bubble {
@@ -90,7 +112,7 @@ th.rotate > div > span {
 }
 
 input.form-control {
-  background-color: #E3F1EE;
+  background-color: #e3f1ee;
   border-radius: 0;
   border-bottom-color: #000000;
   border-left: 0;
@@ -100,8 +122,73 @@ input.form-control {
 
 /*TODO: this may be a bad idea, changing the behavior of the focus*/
 input.form-control:focus {
-  border-bottom-color: #72C6C6;
+  border-bottom-color: #72c6c6;
   border-color: inherit;
   box-shadow: none;
 }
 
+@media (prefers-color-scheme: dark) {
+
+  a {
+    font-weight: 700;
+    color: #0cc;
+  }
+
+  a:hover{
+    font-weight: 700;
+    color: #00ffb9;
+  }
+
+  body {
+    background-color: #000028;
+    color: #fff;
+  }
+
+  .btn-gs {
+    background: #001f39;
+    border-color: #0cc;
+    border-radius: 0;
+    color: #0cc;
+  }
+
+  .btn-gs:hover,
+  .btn-gs:active {
+    background: #003866;
+    border-color: #00ffb9;
+    border-radius: 0;
+    color: #00ffb9;
+  }
+
+  .list-group-item {
+    color: #e0efff;
+    background-color: #001f39;
+  }
+
+  input.form-control {
+    background-color: #001f39;
+    border-radius: 0;
+    border-bottom-color: #686969;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    color: #fff;
+  }
+  
+  /*TODO: this may be a bad idea, changing the behavior of the focus*/
+  input.form-control:focus {
+    border-bottom-color: #00ffb9;
+  }
+
+  .speech-bubble {
+    border: 0.1em solid #aec4c5;
+  }
+  
+  .speech-bubble:before {
+    border-right: 0.45em solid #aec4c5;
+    border-bottom: 0.45em solid #aec4c5;
+  }
+  .speech-bubble:after {
+    border-right: 0.35em solid #001f39;
+    border-bottom: 0.35em solid #001f39;
+  }
+}
