@@ -26,6 +26,12 @@ Logout if needed
 firebase logout
 ```
 
+(Alternatively, re-log-in)
+
+```cmd
+firebase login --reauth
+```
+
 Login with Google account
 
 ```cmd
