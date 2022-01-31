@@ -60,6 +60,7 @@ export class ReportsService {
         const row: TableRow = this.reportObj.addRow();
         const keys: string[] = Object.keys(docData);
 
+        keys.sort();
         this.reportObj.addCell(row, 'id', doc.id);
 
         keys?.forEach(
