@@ -43,7 +43,7 @@
             },
             {
                 "headline": "Linux",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de utilizare / programare Linux pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de utilizare / programare Linux pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
                     {
                         "value": "0",
@@ -92,7 +92,7 @@
             },
             {
                 "headline": "C/C++",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de C++ pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de C++ pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
                     {
                         "value": "0",
@@ -140,7 +140,7 @@
             },
             {
                 "headline": "C#",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de C#/.NET pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de C#/.NET pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
                     {
                         "value": 0,
@@ -189,7 +189,7 @@
             {
                 "headline": "Java",
                 "icon": "M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Java pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Java pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
                     {
                         "value": 0,
@@ -237,7 +237,7 @@
             },
             {
                 "headline": "Web development",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Web Development pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Web Development pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
                     {
                         "value": 0,
@@ -285,7 +285,7 @@
             },
             {
                 "headline": "SQL / DB",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de SQL pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de SQL pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
                     {
                         "value": 0,
@@ -331,7 +331,7 @@
             },
             {
                 "headline": "HW - Proiectarea Circuite Digitale",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Circuite Digitale si Proiectarea acestora, pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Circuite Digitale si Proiectarea acestora, pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
                     {
                         "value": 0,
@@ -380,7 +380,7 @@
             },
             {
                 "headline": "HW - Implementarea Circuitelor Digitale folosind platforme FPGA",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Implementare a Circuitelor Digitale folosind platforme FPGA, pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Implementare a Circuitelor Digitale folosind platforme FPGA, pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
                     {
                         "value": 0,
@@ -429,7 +429,7 @@
             },
             {
                 "headline": "HW - Verificarea Funcțională a Proiectelor de Circuite Digitale",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Verificare Functionala a Proiectelor de Circuite Digitale, pe o scară de la 1 la 10. Am notat și câteva exemple de ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Verificare Functionala a Proiectelor de Circuite Digitale, pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
                     {
                         "value": 0,

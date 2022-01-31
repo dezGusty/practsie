@@ -1,4 +1,7 @@
-/*Color styles*/
+/*Overrides*/
+:root {
+  --bs-body-font-size: 1.15rem;
+}
 
 body {
   background-color: #fff;
