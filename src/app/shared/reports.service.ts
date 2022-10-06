@@ -1,11 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { TableData, TableRow } from './tabledata.model';
 import { AnswerSerialization } from './answerserialization.model';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { SurveyService } from './survey.service';
 import { Survey } from './survey.model';
 import { SurveyQuestion } from './surveyquestion.model';
 import { SettingsService } from './settings.service';
+import { collection, Firestore, getDocs } from '@angular/fire/firestore';
 const surveyConfig = require('./surveyconfig.json').surveyConfig;
 
 @Injectable({
@@ -17,7 +17,10 @@ export class ReportsService {
 
   public onReportReady: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private db: AngularFirestore, private surveySvc: SurveyService, private settingsSvc: SettingsService) { }
+  constructor(
+    private firestore: Firestore,
+    private surveySvc: SurveyService,
+    private settingsSvc: SettingsService) { }
 
   public triggerDemoReportOfAllDocsAsync() {
 
@@ -48,20 +51,20 @@ export class ReportsService {
     this.onReportReady.emit('ready');
   }
 
-  public triggerReportOfAllDocsAsync() {
+  public async triggerReportOfAllDocsAsync() {
     this.reportObj = new TableData();
-    this.db.collection(this.settingsSvc.getSurveyCollection()).get().toPromise().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
-
-        const docData = doc.data();
-
-        console.log(doc.id, ' => ', docData);
+    const collectionRef = collection(this.firestore, this.settingsSvc.getSurveyCollection());
+    const docsSnap = await getDocs(collectionRef);
+    docsSnap.forEach(
+      myDoc => {
+        const docData = myDoc.data();
+        console.log(myDoc.id, ' => ', docData);
 
         const row: TableRow = this.reportObj.addRow();
         const keys: string[] = Object.keys(docData);
 
         keys.sort();
-        this.reportObj.addCell(row, 'id', doc.id);
+        this.reportObj.addCell(row, 'id', myDoc.id);
 
         keys?.forEach(
           key => {
@@ -75,8 +78,7 @@ export class ReportsService {
         );
       });
 
-      this.reportObj.dump();
-      this.onReportReady.emit('ready');
-    });
+    this.reportObj.dump();
+    this.onReportReady.emit('ready');
   }
 }

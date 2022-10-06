@@ -35,8 +35,8 @@ export class DashComponent implements OnInit, OnDestroy {
     });
   }
 
-  onGetReport() {
-    this.reportSvc.triggerReportOfAllDocsAsync();
+  async onGetReport() {
+    await this.reportSvc.triggerReportOfAllDocsAsync();
   }
 
   onGetDemoReport() {

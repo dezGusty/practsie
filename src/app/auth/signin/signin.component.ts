@@ -14,8 +14,8 @@ export class SigninComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  tryGoogleLogin() {
-    this.authSvc.doGoogleLogin({ successRoute: [] })
+  async tryGoogleLogin() {
+    await this.authSvc.doGoogleLoginAsync({ successRoute: [] })
       .then(res => {
         console.log('[signin] navigating to dash');
         this.router.navigate(['/dash']);

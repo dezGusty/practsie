@@ -18,8 +18,8 @@ export class SurveyComponent implements OnInit {
     this.survey = this.surveySvc.getDefaultSurvey();
   }
 
-  onStoreResultsClicked() {
-    this.surveySvc.saveSurveyResults(this.survey);
+  async onStoreResultsClicked() {
+    await this.surveySvc.saveSurveyResultsAsync(this.survey);
 
     this.surveySvc.clearTokenAndDoc();
     this.router.navigate(['/done']);

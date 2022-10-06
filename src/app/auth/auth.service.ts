@@ -1,11 +1,14 @@
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Auth, authState, browserPopupRedirectResolver, GoogleAuthProvider, signInWithPopup, User } from '@angular/fire/auth';
+
+import { Injectable, EventEmitter, Optional } from '@angular/core';
 import { Router } from '@angular/router';
 import firebase from 'firebase/compat/app';
-import { User, UserRoles } from '../shared/user.model';
+import { AppUser, UserRoles } from '../shared/app-user.model';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Subscription } from 'rxjs';
 import { AppStorage } from '../shared/app-storage';
+import { Firestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +34,7 @@ export class AuthService {
    * shall be performed on the data read at the login time. The user needs to log-in
    * again in order to read any updated permissions.
    */
-  private cachedUser: User = null;
+  private cachedUser: AppUser | null = null;
 
   private subscription: Subscription;
 
@@ -40,6 +43,8 @@ export class AuthService {
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,
+    private firestore: Firestore,
+    @Optional() private auth: Auth,
     private db: AngularFirestore,
     private appStorage: AppStorage) { }
 
@@ -61,14 +66,11 @@ export class AuthService {
    */
   doGoogleLogin(postNavi: { successRoute: string[] } = { successRoute: ['/'] }) {
     return new Promise<any>((resolve, reject) => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      this.afAuth
-        .signInWithPopup(provider)
-        .then(res => {
-          console.log('[firebase login]');
 
+      signInWithPopup(this.auth,
+        new GoogleAuthProvider(),
+        browserPopupRedirectResolver).then((res) => {
+          // Success
           this.issueTokenRetrieval();
           this.updateAndCacheUserAfterLogin(res.user);
           this.onSignInOut.emit('signin-done');
@@ -76,22 +78,37 @@ export class AuthService {
             console.log('[login] navigating to route ', postNavi.successRoute);
             this.router.navigate(postNavi.successRoute);
           }
-
           resolve(res);
-        })
-        .catch((error) => {
-          // error.code;
-          // error.message;
-          // error.email
-          // error.credential
+        }, (error) => {
+          // Error handling
           console.warn('error when logging in', error);
         });
     });
   }
 
+  public async doGoogleLoginAsync(postNavi: { successRoute: string[] } = { successRoute: ['/'] }): Promise<boolean> {
+    console.log('doGoogleLoginAsync entered');
 
-  updateAndCacheUserAfterLogin(authdata: firebase.User) {
-    const userData = new User(authdata);
+    const userCred = await signInWithPopup(
+      this.auth,
+      new GoogleAuthProvider());
+    console.log('userCred', userCred);
+    if (userCred) {
+      this.issueTokenRetrieval();
+      this.updateAndCacheUserAfterLogin(userCred.user);
+      this.onSignInOut.emit('signin-done');
+      if (postNavi?.successRoute?.length > 0) {
+        console.log('[login] navigating to route ', postNavi.successRoute);
+        this.router.navigate(postNavi.successRoute);
+      }
+      return true;
+    }
+    return false;
+  }
+
+
+  updateAndCacheUserAfterLogin(authdata: User) {
+    const userData = new AppUser(authdata);
     const userPath = authdata.uid;
     const userRef = this.db.doc('users/' + userPath).get();
 

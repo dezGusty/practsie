@@ -7,6 +7,10 @@ import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsen
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
+import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
+import { getFirestore, provideFirestore, enableMultiTabIndexedDbPersistence } from '@angular/fire/firestore';
+import { provideAuth, connectAuthEmulator, getAuth } from '@angular/fire/auth';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SurveyComponent } from './survey/survey.component';
@@ -57,6 +61,18 @@ const cookieConfig: NgcCookieConsentConfig = {
     DashComponent
   ],
   imports: [
+    provideAuth(() => {
+      const auth = getAuth();
+      return auth;
+    }),
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFirestore(() => {
+      const firestore = getFirestore();
+      if (!firestore['_initialized']) {
+        enableMultiTabIndexedDbPersistence(firestore);
+      }
+      return firestore;
+    }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule,
