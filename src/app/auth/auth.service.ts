@@ -1,14 +1,11 @@
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Auth, authState, browserPopupRedirectResolver, GoogleAuthProvider, signInWithPopup, User } from '@angular/fire/auth';
+import { Auth, browserPopupRedirectResolver, GoogleAuthProvider, signInWithPopup, User } from '@angular/fire/auth';
 
 import { Injectable, EventEmitter, Optional } from '@angular/core';
 import { Router } from '@angular/router';
-import firebase from 'firebase/compat/app';
 import { AppUser, UserRoles } from '../shared/app-user.model';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Subscription } from 'rxjs';
 import { AppStorage } from '../shared/app-storage';
-import { Firestore } from '@angular/fire/firestore';
+import { doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -36,16 +33,14 @@ export class AuthService {
    */
   private cachedUser: AppUser | null = null;
 
-  private subscription: Subscription;
+  private subscription: Subscription = Subscription.EMPTY;
 
   // -------------------- functionality -----------------------------
 
   constructor(
     private router: Router,
-    private afAuth: AngularFireAuth,
     private firestore: Firestore,
     @Optional() private auth: Auth,
-    private db: AngularFirestore,
     private appStorage: AppStorage) { }
 
   /**
@@ -110,12 +105,13 @@ export class AuthService {
   updateAndCacheUserAfterLogin(authdata: User) {
     const userData = new AppUser(authdata);
     const userPath = authdata.uid;
-    const userRef = this.db.doc('users/' + userPath).get();
+    const userDocRef = doc(this.firestore, 'users/' + userPath);
 
-    this.subscription = userRef.subscribe(user => {
-      if (user.exists) {
+    this.subscription = docData(userDocRef).subscribe(async user => {
+      const castedUser = user as AppUser;
+      if (castedUser) {
         // existing user. read the roles.
-        const originalObj: UserRoles = user.get('roles');
+        const originalObj: UserRoles = castedUser.roles;
         if (originalObj) {
           userData.roles = originalObj;
         } else {
@@ -127,7 +123,8 @@ export class AuthService {
           // store something.
           console.log('[auth] storing user permissions');
 
-          this.db.doc('users/' + userPath).set(obj, { merge: true });
+          const docRef = doc(this.firestore, 'users/' + userPath);
+          await setDoc(docRef, obj, { merge: true });
         }
         this.cachedUser = obj;
         this.appStorage.setAppStorageItem('roles', JSON.stringify(this.cachedUser?.roles));
@@ -138,7 +135,10 @@ export class AuthService {
         // New user. Create the user doc.
         const obj = { ...userData };
         console.log('[auth] User does not exist. Should create');
-        this.db.doc('users/' + userPath).set(obj);
+
+        const docRef = doc(this.firestore, 'users/' + userPath);
+        await setDoc(docRef, obj, { merge: true });
+
         this.cachedUser = obj;
         this.appStorage.setAppStorageItem('roles', JSON.stringify(this.cachedUser?.roles));
         if (this.appStorage.cacheUserData) {
@@ -146,6 +146,20 @@ export class AuthService {
         }
       }
     });
+  }
+
+  public async signOutAsync() {
+    // unsubscribe
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
+    this.token = null;
+    this.cachedUser = null;
+
+    await this.auth.signOut();
+    console.log('[guard] navigating in place');
+    this.router.navigate(['']);
   }
 
   public isAuthenticated(): boolean {
@@ -164,7 +178,7 @@ export class AuthService {
     if (!this.cachedUser || !this.cachedUser?.roles) {
       const storedValue = this.appStorage.getAppStorageItem('roles');
       if (!storedValue) {
-        return this.doesRoleContainOrganizer(this.cachedUser?.roles);
+        return false;
       }
       const roles: UserRoles = JSON.parse(storedValue);
       return this.doesRoleContainOrganizer(roles);
@@ -174,18 +188,15 @@ export class AuthService {
   }
 
   private issueTokenRetrieval() {
-    if (!this.afAuth || !this.afAuth.currentUser) {
+    console.log('issueTokenRetrieval');
+
+    if (!this.auth || !this.auth.currentUser) {
       return;
     }
 
     // Request the token. Store it when received.
-    this.afAuth.currentUser
-      .then(
-        (usr: firebase.User) => {
-          this.token = usr.uid;
-        }
-      ).catch((error) => {
-        console.warn('[auth] Failed to retrieve token', error);
-      });
+    this.token = this.auth?.currentUser?.uid;
+    console.log('this.token', this.token);
   }
+
 }

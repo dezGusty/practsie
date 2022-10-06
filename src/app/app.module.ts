@@ -4,8 +4,6 @@ import { FormsModule } from '@angular/forms';
 
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
-import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore, enableMultiTabIndexedDbPersistence } from '@angular/fire/firestore';
@@ -19,7 +17,6 @@ import { LoginComponent } from './login/login.component';
 import { SurveyService } from './shared/survey.service';
 import { ChoiceComponent } from './survey/question/choice/choice.component';
 import { environment } from 'src/environments/environment';
-import { AngularFireModule } from '@angular/fire/compat';
 import { TokenGuard } from './auth/token-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { DoneComponent } from './login/done/done.component';
@@ -73,9 +70,6 @@ const cookieConfig: NgcCookieConsentConfig = {
       }
       return firestore;
     }),
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule, // imports firebase/firestore, only needed for database features
-    AngularFireAuthModule,
     BrowserModule,
     FormsModule,
     AppRoutingModule,
