@@ -23,7 +23,7 @@ export class AuthService {
   /**
    * Store the auth token for quick access.
    */
-  private token: string = null;
+  private token: string | null = null;
 
   /**
    * Store a cache for the currently logged in user.
@@ -64,7 +64,7 @@ export class AuthService {
 
 
   updateAndCacheUserAfterLogin(authdata: User) {
-    const userData = new AppUser(authdata);
+    const userData = new AppUser({ email: authdata.email as string, photoURL: authdata.photoURL as string });
     const userPath = authdata.uid;
     const userDocRef = doc(this.firestore, 'users/' + userPath);
 
@@ -72,7 +72,7 @@ export class AuthService {
       const castedUser = user as AppUser;
       if (castedUser) {
         // existing user. read the roles.
-        const originalObj: UserRoles = castedUser.roles;
+        const originalObj: UserRoles | undefined = castedUser.roles;
         if (originalObj) {
           userData.roles = originalObj;
         } else {

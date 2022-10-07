@@ -65,9 +65,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => {
       const firestore = getFirestore();
-      if (!firestore['_initialized']) {
-        enableMultiTabIndexedDbPersistence(firestore);
-      }
+      // if (!firestore['_initialized']) {
+      //   enableMultiTabIndexedDbPersistence(firestore);
+      // }
       return firestore;
     }),
     BrowserModule,

@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div *ngIf="this.survey" class="container-fluid">
   <form (submit)="onStoreResultsClicked()">
 
     <app-question *ngFor='let question of this.survey?.questions; let idx=index' [counter]='idx+1'

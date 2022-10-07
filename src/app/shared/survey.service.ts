@@ -45,7 +45,7 @@ export class SurveyService {
   }
 
   getDefaultSurvey(): Survey | undefined {
-    if (! this.singleSurvey) {
+    if (!this.singleSurvey) {
       // Create the survey.
       if (this.userToken.length > 0) {
         this.singleSurvey = this.makeSurveyFromData(surveyConfig);
@@ -99,19 +99,19 @@ export class SurveyService {
     }
     const docName = '/' + this.settingsSvc.getSurveyCollection() + '/' + survey.userToken;
     const docRef = doc(this.firestore, docName);
-    const obj: AnswerSerialization = {};
+    const obj: { [index: string]: AnswerSerialization } = {};
 
     const questionsAray = survey.questions as Array<any>;
 
     questionsAray.forEach(question => {
-      obj[question.headline] = {
+      const answerValue: AnswerSerialization = {
         type: question.answer.type,
         free: question.answer.freeAnswer,
         val: question.answer.getUserChoiceValue()
       };
+      obj[question.headline] = answerValue;
     });
 
-    console.log('[saving results]', obj);
     await setDoc(docRef, obj, { merge: true });
   }
 }
