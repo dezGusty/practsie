@@ -45,7 +45,7 @@ export class SurveyService {
   }
 
   getDefaultSurvey(): Survey | undefined {
-    if (null === this.singleSurvey) {
+    if (! this.singleSurvey) {
       // Create the survey.
       if (this.userToken.length > 0) {
         this.singleSurvey = this.makeSurveyFromData(surveyConfig);
@@ -111,10 +111,7 @@ export class SurveyService {
       };
     });
 
-    console.log('survey-results', obj);
-
-
-    console.log('[save]', obj);
+    console.log('[saving results]', obj);
     await setDoc(docRef, obj, { merge: true });
   }
 }

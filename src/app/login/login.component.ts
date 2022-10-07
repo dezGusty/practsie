@@ -16,8 +16,6 @@ export class LoginComponent implements OnInit {
   }
 
   onProceedClick() {
-    console.log('[proceed][', this.userToken, ']');
-
     if (this.surveySvc.doesTokenSeemValid(this.userToken)) {
       this.surveySvc.setUserToken(this.userToken);
       this.router.navigate(['/survey']);

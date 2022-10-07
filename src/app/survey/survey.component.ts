@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.css']
+  styles: ['']
 })
 export class SurveyComponent implements OnInit {
 

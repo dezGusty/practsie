@@ -43,51 +43,12 @@ export class AuthService {
     @Optional() private auth: Auth,
     private appStorage: AppStorage) { }
 
-  /**
-   * Perform the login into the application via Google.
-   *
-   * @param postNavi: navigation route to be applied upon a successful log-in.
-   * It consists of an array of strings. Defaults to : ['/'].
-   * To avoid any redirect upon log-in, set this to an empty array:
-   * @example
-   * // login without redirect
-   * doGoogleLogin({ successRoute: [] });
-   * @example
-   * // login with default redirect to root.
-   * doGoogleLogin();
-   * @example
-   * // login with default redirect to /base.
-   * doGoogleLogin({ successRoute: ['base'] });
-   */
-  doGoogleLogin(postNavi: { successRoute: string[] } = { successRoute: ['/'] }) {
-    return new Promise<any>((resolve, reject) => {
-
-      signInWithPopup(this.auth,
-        new GoogleAuthProvider(),
-        browserPopupRedirectResolver).then((res) => {
-          // Success
-          this.issueTokenRetrieval();
-          this.updateAndCacheUserAfterLogin(res.user);
-          this.onSignInOut.emit('signin-done');
-          if (postNavi?.successRoute?.length > 0) {
-            console.log('[login] navigating to route ', postNavi.successRoute);
-            this.router.navigate(postNavi.successRoute);
-          }
-          resolve(res);
-        }, (error) => {
-          // Error handling
-          console.warn('error when logging in', error);
-        });
-    });
-  }
-
   public async doGoogleLoginAsync(postNavi: { successRoute: string[] } = { successRoute: ['/'] }): Promise<boolean> {
-    console.log('doGoogleLoginAsync entered');
+    console.log('Attempting log-in with Google Auth');
 
     const userCred = await signInWithPopup(
       this.auth,
       new GoogleAuthProvider());
-    console.log('userCred', userCred);
     if (userCred) {
       this.issueTokenRetrieval();
       this.updateAndCacheUserAfterLogin(userCred.user);
@@ -158,7 +119,7 @@ export class AuthService {
     this.cachedUser = null;
 
     await this.auth.signOut();
-    console.log('[guard] navigating in place');
+    console.log('[auth] navigating in place at sign-out.');
     this.router.navigate(['']);
   }
 
@@ -188,15 +149,12 @@ export class AuthService {
   }
 
   private issueTokenRetrieval() {
-    console.log('issueTokenRetrieval');
-
     if (!this.auth || !this.auth.currentUser) {
       return;
     }
 
     // Request the token. Store it when received.
     this.token = this.auth?.currentUser?.uid;
-    console.log('this.token', this.token);
   }
 
 }

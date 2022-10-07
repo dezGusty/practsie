@@ -12,7 +12,7 @@ export class QuestionComponent implements OnInit {
 
   @Input() question: SurveyQuestion | undefined;
   @Input() counter: number;
-  @Input() maxcounter: number | undefined;
+  @Input() maxcounter: number;
 
   constructor() {
     this.counter = 0;
