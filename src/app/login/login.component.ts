@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onInputTokenChange($event) {
+  onInputTokenChange($event: any) {
     if ($event.code === 'Enter') {
       this.onProceedClick();
     }

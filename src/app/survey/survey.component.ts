@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class SurveyComponent implements OnInit {
 
-  public survey: Survey;
+  public survey: Survey | undefined;
 
   constructor(private surveySvc: SurveyService, private router: Router) { }
 
@@ -19,11 +19,14 @@ export class SurveyComponent implements OnInit {
   }
 
   async onStoreResultsClicked() {
+    if (!this.survey) {
+      return;
+    }
+
     await this.surveySvc.saveSurveyResultsAsync(this.survey);
 
     this.surveySvc.clearTokenAndDoc();
     this.router.navigate(['/done']);
-
   }
 
 }

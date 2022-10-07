@@ -19,7 +19,7 @@
       </div>
     </div>
   </div>
-  <div class="row" *ngIf="reportData.rows.length > 0">
+  <div class="row" *ngIf="reportData && reportData.rows.length > 0">
     <div class="col-12">
       <table class="table table-striped" id="reportTable" #reportTable>
         <thead>
@@ -29,14 +29,14 @@
             </div>
             <ng-template #noRotateBlockCnt>Cnt</ng-template>
           </th>
-          <th scope="col" class="rotate" *ngFor="let header of reportData.headers">
+          <th scope="col" class="rotate" *ngFor="let header of reportData?.headers">
             <div *ngIf="useRotate; else noRotateBlock">
               <span>{{header}}</span>
             </div>
             <ng-template #noRotateBlock>{{header}}</ng-template>
           </th>
         </thead>
-        <tr *ngFor="let row of reportData.rows; let idx=index">
+        <tr *ngFor="let row of reportData?.rows; let idx=index">
           <th scope="row">{{idx}}</th>
           <td *ngFor="let cell of row.data">
             {{cell}}
@@ -46,7 +46,7 @@
       </table>
     </div>
   </div>
-  <div class="row" *ngIf="reportData.rows.length > 0">
+  <div class="row" *ngIf="reportData && reportData.rows.length > 0">
     <button type="button" class="btn btn-gs btn-outline-info" (click)="onSelectTable()">
       Select table
     </button>

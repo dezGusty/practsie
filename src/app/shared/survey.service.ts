@@ -21,7 +21,7 @@ export class SurveyService {
 
   private userToken = '';
 
-  private singleSurvey: Survey = null;
+  private singleSurvey: Survey | undefined = undefined;
   constructor(
     private firestore: Firestore,
     private settingsSvc: SettingsService) { }
@@ -32,7 +32,7 @@ export class SurveyService {
 
   clearTokenAndDoc() {
     this.userToken = '';
-    this.singleSurvey = null;
+    this.singleSurvey = undefined;
   }
 
   setUserToken(token: string) {
@@ -44,7 +44,7 @@ export class SurveyService {
       && this.doesTokenSeemValid(this.userToken);
   }
 
-  getDefaultSurvey(): Survey {
+  getDefaultSurvey(): Survey | undefined {
     if (null === this.singleSurvey) {
       // Create the survey.
       if (this.userToken.length > 0) {
@@ -63,7 +63,8 @@ export class SurveyService {
    */
   public makeQuestionFromData(questionConfig: any): SurveyQuestion {
     const result: SurveyQuestion = new SurveyQuestion(questionConfig.headline, questionConfig.question);
-    questionConfig.choices.forEach(choiceCfg => {
+    const choicesArray = questionConfig.choices as Array<any>;
+    choicesArray.forEach(choiceCfg => {
       result.answer.addChoice(new Choice(choiceCfg.value, choiceCfg.detail, choiceCfg.desc));
     });
 
@@ -81,7 +82,7 @@ export class SurveyService {
    */
   public makeSurveyFromData(configObject: any): Survey {
     const result: Survey = new Survey('default');
-    const questionsAray = configObject.questions;
+    const questionsAray = configObject.questions as Array<any>;
 
     questionsAray.forEach(question => {
       result.questions.push(this.makeQuestionFromData(question));
@@ -96,17 +97,22 @@ export class SurveyService {
       console.log('[survey] token length is invalid!');
       return;
     }
-    const docName = '/' + this.settingsSvc.getSurveyCollection() +'/' + survey.userToken;
+    const docName = '/' + this.settingsSvc.getSurveyCollection() + '/' + survey.userToken;
     const docRef = doc(this.firestore, docName);
     const obj: AnswerSerialization = {};
 
-    survey.questions.forEach(question => {
+    const questionsAray = survey.questions as Array<any>;
+
+    questionsAray.forEach(question => {
       obj[question.headline] = {
         type: question.answer.type,
         free: question.answer.freeAnswer,
         val: question.answer.getUserChoiceValue()
       };
     });
+
+    console.log('survey-results', obj);
+
 
     console.log('[save]', obj);
     await setDoc(docRef, obj, { merge: true });
