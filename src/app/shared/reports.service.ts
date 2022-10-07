@@ -1,11 +1,11 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { TableData, TableRow } from './tabledata.model';
 import { AnswerSerialization } from './answerserialization.model';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { SurveyService } from './survey.service';
 import { Survey } from './survey.model';
 import { SurveyQuestion } from './surveyquestion.model';
 import { SettingsService } from './settings.service';
+import { collection, Firestore, getDocs } from '@angular/fire/firestore';
 const surveyConfig = require('./surveyconfig.json').surveyConfig;
 
 @Injectable({
@@ -13,11 +13,17 @@ const surveyConfig = require('./surveyconfig.json').surveyConfig;
 })
 export class ReportsService {
 
-  public reportObj: TableData;
-
   public onReportReady: EventEmitter<string> = new EventEmitter<string>();
+  private lastReportObj: TableData | undefined;
 
-  constructor(private db: AngularFirestore, private surveySvc: SurveyService, private settingsSvc: SettingsService) { }
+  constructor(
+    private firestore: Firestore,
+    private surveySvc: SurveyService,
+    private settingsSvc: SettingsService) { }
+
+  public getLatestReportObj(): TableData | undefined {
+    return this.lastReportObj;
+  }
 
   public triggerDemoReportOfAllDocsAsync() {
 
@@ -39,44 +45,45 @@ export class ReportsService {
     const cols: string[] = singleSurvey.questions.map(
       (question: SurveyQuestion, index: number) => question.headline);
 
-    this.reportObj = new TableData();
+    const reportObj: TableData = new TableData();
 
-    const row1 = this.reportObj.addRow();
-    cols.forEach(col => this.reportObj.addCell(row1, col, 'bla'));
-    const row2 = this.reportObj.addRow();
-    cols.forEach(col => this.reportObj.addCell(row2, col, 'bla'));
+    const row1 = reportObj.addRow();
+    cols.forEach(col => reportObj.addCell(row1, col, 'bla'));
+    const row2 = reportObj.addRow();
+    cols.forEach(col => reportObj.addCell(row2, col, 'bla'));
+    this.lastReportObj = reportObj;
     this.onReportReady.emit('ready');
   }
 
-  public triggerReportOfAllDocsAsync() {
-    this.reportObj = new TableData();
-    this.db.collection(this.settingsSvc.getSurveyCollection()).get().toPromise().then((querySnapshot) => {
-      querySnapshot.forEach((doc) => {
+  public async triggerReportOfAllDocsAsync() {
+    const reportObj: TableData = new TableData();
+    const collectionRef = collection(this.firestore, this.settingsSvc.getSurveyCollection());
+    const docsSnap = await getDocs(collectionRef);
+    docsSnap.forEach(
+      myDoc => {
+        const docData = myDoc.data();
+        console.log(myDoc.id, ' => ', docData);
 
-        const docData = doc.data();
-
-        console.log(doc.id, ' => ', docData);
-
-        const row: TableRow = this.reportObj.addRow();
+        const row: TableRow = reportObj.addRow();
         const keys: string[] = Object.keys(docData);
 
         keys.sort();
-        this.reportObj.addCell(row, 'id', doc.id);
+        reportObj.addCell(row, 'id', myDoc.id);
 
         keys?.forEach(
           key => {
             const cellValue: AnswerSerialization = docData[key];
             if (cellValue.val) {
-              this.reportObj.addCell(row, key, cellValue.val);
+              reportObj.addCell(row, key, cellValue.val);
             } else {
-              this.reportObj.addCell(row, key, '');
+              reportObj.addCell(row, key, '');
             }
           }
         );
       });
 
-      this.reportObj.dump();
-      this.onReportReady.emit('ready');
-    });
+    reportObj.dump();
+    this.lastReportObj = reportObj;
+    this.onReportReady.emit('ready');
   }
 }

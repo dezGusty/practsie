@@ -13,7 +13,6 @@ export class TokenGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):
     Observable<boolean> | Promise<boolean> | boolean {
     if (this.surveySvc.hasUserToken()) {
-      console.log('[guard] activating');
       return true;
     } else {
       console.log('[guard] navigating to root');

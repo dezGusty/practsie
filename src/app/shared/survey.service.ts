@@ -3,11 +3,16 @@ import { Survey } from './survey.model';
 import { SurveyQuestion } from './surveyquestion.model';
 
 import { Choice } from './choice.model';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { QuestionResponseType } from './questionresponsetype.model';
 import { AnswerSerialization } from './answerserialization.model';
 import { SettingsService } from './settings.service';
+import { doc, Firestore, setDoc } from '@angular/fire/firestore';
+
+
+
 const surveyConfig = require('./surveyconfig.json').surveyConfig;
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +21,10 @@ export class SurveyService {
 
   private userToken = '';
 
-  private singleSurvey: Survey = null;
-  constructor(private db: AngularFirestore, private settingsSvc: SettingsService) { }
+  private singleSurvey: Survey | undefined = undefined;
+  constructor(
+    private firestore: Firestore,
+    private settingsSvc: SettingsService) { }
 
   doesTokenSeemValid(token: string): boolean {
     return token.startsWith('PS-');
@@ -25,7 +32,7 @@ export class SurveyService {
 
   clearTokenAndDoc() {
     this.userToken = '';
-    this.singleSurvey = null;
+    this.singleSurvey = undefined;
   }
 
   setUserToken(token: string) {
@@ -37,8 +44,8 @@ export class SurveyService {
       && this.doesTokenSeemValid(this.userToken);
   }
 
-  getDefaultSurvey(): Survey {
-    if (null === this.singleSurvey) {
+  getDefaultSurvey(): Survey | undefined {
+    if (!this.singleSurvey) {
       // Create the survey.
       if (this.userToken.length > 0) {
         this.singleSurvey = this.makeSurveyFromData(surveyConfig);
@@ -56,7 +63,8 @@ export class SurveyService {
    */
   public makeQuestionFromData(questionConfig: any): SurveyQuestion {
     const result: SurveyQuestion = new SurveyQuestion(questionConfig.headline, questionConfig.question);
-    questionConfig.choices.forEach(choiceCfg => {
+    const choicesArray = questionConfig.choices as Array<any>;
+    choicesArray.forEach(choiceCfg => {
       result.answer.addChoice(new Choice(choiceCfg.value, choiceCfg.detail, choiceCfg.desc));
     });
 
@@ -74,7 +82,7 @@ export class SurveyService {
    */
   public makeSurveyFromData(configObject: any): Survey {
     const result: Survey = new Survey('default');
-    const questionsAray = configObject.questions;
+    const questionsAray = configObject.questions as Array<any>;
 
     questionsAray.forEach(question => {
       result.questions.push(this.makeQuestionFromData(question));
@@ -82,26 +90,28 @@ export class SurveyService {
     return result;
   }
 
-  saveSurveyResults(survey: Survey) {
+  async saveSurveyResultsAsync(survey: Survey) {
     console.log('[survey] saving', survey);
     if (survey.userToken.length <= 0) {
       // invalid
       console.log('[survey] token length is invalid!');
       return;
     }
-    const docName = '/' + this.settingsSvc.getSurveyCollection() +'/' + survey.userToken;
-    const surveyRef = this.db.doc(docName).ref;
-    const obj: AnswerSerialization = {};
+    const docName = '/' + this.settingsSvc.getSurveyCollection() + '/' + survey.userToken;
+    const docRef = doc(this.firestore, docName);
+    const obj: { [index: string]: AnswerSerialization } = {};
 
-    survey.questions.forEach(question => {
-      obj[question.headline] = {
+    const questionsAray = survey.questions as Array<any>;
+
+    questionsAray.forEach(question => {
+      const answerValue: AnswerSerialization = {
         type: question.answer.type,
         free: question.answer.freeAnswer,
         val: question.answer.getUserChoiceValue()
       };
+      obj[question.headline] = answerValue;
     });
 
-    console.log('[save]', obj);
-    surveyRef.set(obj, { merge: true });
+    await setDoc(docRef, obj, { merge: true });
   }
 }

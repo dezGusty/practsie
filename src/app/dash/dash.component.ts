@@ -11,9 +11,9 @@ import { Subscription } from 'rxjs';
 })
 export class DashComponent implements OnInit, OnDestroy {
 
-  @ViewChild('reportTable', { static: false }) public reportTable: ElementRef;
+  @ViewChild('reportTable', { static: false }) public reportTable: ElementRef | undefined;
 
-  public reportData: TableData = new TableData();
+  public reportData: TableData | undefined = new TableData();
 
   public useRotate = true;
 
@@ -24,7 +24,7 @@ export class DashComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.subscriptions.push(this.reportSvc.onReportReady.subscribe(
       (message: any) => {
-        this.reportData = this.reportSvc.reportObj;
+        this.reportData = this.reportSvc.getLatestReportObj();
       }
     ));
   }
@@ -35,8 +35,8 @@ export class DashComponent implements OnInit, OnDestroy {
     });
   }
 
-  onGetReport() {
-    this.reportSvc.triggerReportOfAllDocsAsync();
+  async onGetReport() {
+    await this.reportSvc.triggerReportOfAllDocsAsync();
   }
 
   onGetDemoReport() {
@@ -52,10 +52,13 @@ export class DashComponent implements OnInit, OnDestroy {
     const el = this.reportTable.nativeElement;
 
     let range: Range;
-    let sel: Selection;
+    let sel: Selection | null;
     if (document.createRange && window.getSelection) {
       range = document.createRange();
       sel = window.getSelection();
+      if (!sel) {
+        return;
+      }
       sel.removeAllRanges();
       try {
         range.selectNodeContents(el);

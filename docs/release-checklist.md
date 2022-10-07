@@ -7,4 +7,4 @@ This is a quick list of steps to be performed when performing a new release.
 - [ ] build the project
   - `ng build --configuration production`
 - [ ] deploy to firebase
-  - `firebase deploy`
+  - `firebase deploy --only hosting`

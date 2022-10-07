@@ -10,31 +10,49 @@ import { QuestionResponseType } from 'src/app/shared/questionresponsetype.model'
 })
 export class QuestionComponent implements OnInit {
 
-  @Input() question: SurveyQuestion;
-  @Input() counter: string;
-  @Input() maxcounter: string;
+  @Input() question: SurveyQuestion | undefined;
+  @Input() counter: number;
+  @Input() maxcounter: number;
 
   constructor() {
+    this.counter = 0;
+    this.maxcounter = 0;
   }
 
   ngOnInit(): void {
+    if (!this.question) {
+      return;
+    }
+
     this.question.answer.setUserChoiceByIndex(0);
   }
 
   isFreeChoice(): boolean {
+    if (!this.question) {
+      return false;
+    }
+
     return this.question.answer.type === QuestionResponseType.freeTextResponse;
   }
 
-  onChoiceSelected($event) {
+  onChoiceSelected($event: any) {
+    if (!this.question) {
+      return;
+    }
+
     const selectedChoice: Choice = $event;
-    if (null == selectedChoice) {
+    if (!selectedChoice) {
       return;
     }
 
     this.question.answer.setUserChoiceByValue(selectedChoice.value);
   }
 
-  onFreeAnswerChange($event) {
+  onFreeAnswerChange($event: any) {
+    if (!this.question) {
+      return;
+    }
+
     this.question.answer.freeAnswer = $event;
   }
 }

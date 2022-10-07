@@ -6,11 +6,11 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-survey',
   templateUrl: './survey.component.html',
-  styleUrls: ['./survey.component.css']
+  styles: ['']
 })
 export class SurveyComponent implements OnInit {
 
-  public survey: Survey;
+  public survey: Survey | undefined;
 
   constructor(private surveySvc: SurveyService, private router: Router) { }
 
@@ -18,12 +18,15 @@ export class SurveyComponent implements OnInit {
     this.survey = this.surveySvc.getDefaultSurvey();
   }
 
-  onStoreResultsClicked() {
-    this.surveySvc.saveSurveyResults(this.survey);
+  async onStoreResultsClicked() {
+    if (!this.survey) {
+      return;
+    }
+
+    await this.surveySvc.saveSurveyResultsAsync(this.survey);
 
     this.surveySvc.clearTokenAndDoc();
     this.router.navigate(['/done']);
-
   }
 
 }

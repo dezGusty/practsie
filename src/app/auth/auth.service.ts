@@ -1,11 +1,11 @@
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Injectable, EventEmitter } from '@angular/core';
+import { Auth, browserPopupRedirectResolver, GoogleAuthProvider, signInWithPopup, User } from '@angular/fire/auth';
+
+import { Injectable, EventEmitter, Optional } from '@angular/core';
 import { Router } from '@angular/router';
-import firebase from 'firebase/compat/app';
-import { User, UserRoles } from '../shared/user.model';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AppUser, UserRoles } from '../shared/app-user.model';
 import { Subscription } from 'rxjs';
 import { AppStorage } from '../shared/app-storage';
+import { doc, docData, Firestore, setDoc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +23,7 @@ export class AuthService {
   /**
    * Store the auth token for quick access.
    */
-  private token: string = null;
+  private token: string | null = null;
 
   /**
    * Store a cache for the currently logged in user.
@@ -31,74 +31,48 @@ export class AuthService {
    * shall be performed on the data read at the login time. The user needs to log-in
    * again in order to read any updated permissions.
    */
-  private cachedUser: User = null;
+  private cachedUser: AppUser | null = null;
 
-  private subscription: Subscription;
+  private subscription: Subscription = Subscription.EMPTY;
 
   // -------------------- functionality -----------------------------
 
   constructor(
     private router: Router,
-    private afAuth: AngularFireAuth,
-    private db: AngularFirestore,
+    private firestore: Firestore,
+    @Optional() private auth: Auth,
     private appStorage: AppStorage) { }
 
-  /**
-   * Perform the login into the application via Google.
-   *
-   * @param postNavi: navigation route to be applied upon a successful log-in.
-   * It consists of an array of strings. Defaults to : ['/'].
-   * To avoid any redirect upon log-in, set this to an empty array:
-   * @example
-   * // login without redirect
-   * doGoogleLogin({ successRoute: [] });
-   * @example
-   * // login with default redirect to root.
-   * doGoogleLogin();
-   * @example
-   * // login with default redirect to /base.
-   * doGoogleLogin({ successRoute: ['base'] });
-   */
-  doGoogleLogin(postNavi: { successRoute: string[] } = { successRoute: ['/'] }) {
-    return new Promise<any>((resolve, reject) => {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      this.afAuth
-        .signInWithPopup(provider)
-        .then(res => {
-          console.log('[firebase login]');
+  public async doGoogleLoginAsync(postNavi: { successRoute: string[] } = { successRoute: ['/'] }): Promise<boolean> {
+    console.log('Attempting log-in with Google Auth');
 
-          this.issueTokenRetrieval();
-          this.updateAndCacheUserAfterLogin(res.user);
-          this.onSignInOut.emit('signin-done');
-          if (postNavi?.successRoute?.length > 0) {
-            console.log('[login] navigating to route ', postNavi.successRoute);
-            this.router.navigate(postNavi.successRoute);
-          }
-
-          resolve(res);
-        })
-        .catch((error) => {
-          // error.code;
-          // error.message;
-          // error.email
-          // error.credential
-          console.warn('error when logging in', error);
-        });
-    });
+    const userCred = await signInWithPopup(
+      this.auth,
+      new GoogleAuthProvider());
+    if (userCred) {
+      this.issueTokenRetrieval();
+      this.updateAndCacheUserAfterLogin(userCred.user);
+      this.onSignInOut.emit('signin-done');
+      if (postNavi?.successRoute?.length > 0) {
+        console.log('[login] navigating to route ', postNavi.successRoute);
+        this.router.navigate(postNavi.successRoute);
+      }
+      return true;
+    }
+    return false;
   }
 
 
-  updateAndCacheUserAfterLogin(authdata: firebase.User) {
-    const userData = new User(authdata);
+  updateAndCacheUserAfterLogin(authdata: User) {
+    const userData = new AppUser({ email: authdata.email as string, photoURL: authdata.photoURL as string });
     const userPath = authdata.uid;
-    const userRef = this.db.doc('users/' + userPath).get();
+    const userDocRef = doc(this.firestore, 'users/' + userPath);
 
-    this.subscription = userRef.subscribe(user => {
-      if (user.exists) {
+    this.subscription = docData(userDocRef).subscribe(async user => {
+      const castedUser = user as AppUser;
+      if (castedUser) {
         // existing user. read the roles.
-        const originalObj: UserRoles = user.get('roles');
+        const originalObj: UserRoles | undefined = castedUser.roles;
         if (originalObj) {
           userData.roles = originalObj;
         } else {
@@ -110,7 +84,8 @@ export class AuthService {
           // store something.
           console.log('[auth] storing user permissions');
 
-          this.db.doc('users/' + userPath).set(obj, { merge: true });
+          const docRef = doc(this.firestore, 'users/' + userPath);
+          await setDoc(docRef, obj, { merge: true });
         }
         this.cachedUser = obj;
         this.appStorage.setAppStorageItem('roles', JSON.stringify(this.cachedUser?.roles));
@@ -121,7 +96,10 @@ export class AuthService {
         // New user. Create the user doc.
         const obj = { ...userData };
         console.log('[auth] User does not exist. Should create');
-        this.db.doc('users/' + userPath).set(obj);
+
+        const docRef = doc(this.firestore, 'users/' + userPath);
+        await setDoc(docRef, obj, { merge: true });
+
         this.cachedUser = obj;
         this.appStorage.setAppStorageItem('roles', JSON.stringify(this.cachedUser?.roles));
         if (this.appStorage.cacheUserData) {
@@ -129,6 +107,20 @@ export class AuthService {
         }
       }
     });
+  }
+
+  public async signOutAsync() {
+    // unsubscribe
+    if (this.subscription) {
+      this.subscription.unsubscribe();
+    }
+
+    this.token = null;
+    this.cachedUser = null;
+
+    await this.auth.signOut();
+    console.log('[auth] navigating in place at sign-out.');
+    this.router.navigate(['']);
   }
 
   public isAuthenticated(): boolean {
@@ -147,7 +139,7 @@ export class AuthService {
     if (!this.cachedUser || !this.cachedUser?.roles) {
       const storedValue = this.appStorage.getAppStorageItem('roles');
       if (!storedValue) {
-        return this.doesRoleContainOrganizer(this.cachedUser?.roles);
+        return false;
       }
       const roles: UserRoles = JSON.parse(storedValue);
       return this.doesRoleContainOrganizer(roles);
@@ -157,18 +149,12 @@ export class AuthService {
   }
 
   private issueTokenRetrieval() {
-    if (!this.afAuth || !this.afAuth.currentUser) {
+    if (!this.auth || !this.auth.currentUser) {
       return;
     }
 
     // Request the token. Store it when received.
-    this.afAuth.currentUser
-      .then(
-        (usr: firebase.User) => {
-          this.token = usr.uid;
-        }
-      ).catch((error) => {
-        console.warn('[auth] Failed to retrieve token', error);
-      });
+    this.token = this.auth?.currentUser?.uid;
   }
+
 }

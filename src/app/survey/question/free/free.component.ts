@@ -8,13 +8,13 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class FreeComponent implements OnInit {
 
   @Output() answerChanged = new EventEmitter<string>();
-  public userAnswer;
+  public userAnswer: any;
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onUserAnswerChange($event) {
+  onUserAnswerChange($event: any) {
     this.answerChanged.emit(this.userAnswer);
   }
 }

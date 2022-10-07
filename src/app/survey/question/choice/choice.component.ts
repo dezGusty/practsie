@@ -8,7 +8,7 @@ import { Choice } from 'src/app/shared/choice.model';
 })
 export class ChoiceComponent implements OnInit {
 
-  @Input() choice: Choice;
+  @Input() choice: Choice | undefined;
   @Output() choiceSelected = new EventEmitter<Choice>();
   constructor() { }
 
