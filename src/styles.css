@@ -123,6 +123,45 @@ input.form-control {
   border-right: 0;
 }
 
+.css-image-with-cover {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  z-index: 0;
+}
+
+.css-cover-img-owner {
+  
+  /* filter: blur(25px) saturate(0.5); */
+  opacity: 0.25;
+  z-index: -1;
+}
+
+.css-cover-img-owner img {
+  /* z-index: -1; */
+  z-index: inherit;
+  margin: -25px;
+  position: absolute;
+  max-height: none;
+  max-width: none;
+  object-fit: cover;
+  inset: 0px;
+  width: 100%;
+}
+
+.css-front-img-owner {
+  backdrop-filter: blur(20px) saturate(0.3);
+  z-index: 5;
+}
+
+.css-front-img-owner img {
+  z-index: inherit;
+  object-fit: contain;
+  /* width: 100%; */
+  inset: 0px;
+  margin: auto;
+}
+
 /*TODO: this may be a bad idea, changing the behavior of the focus*/
 input.form-control:focus {
   border-bottom-color: #72c6c6;

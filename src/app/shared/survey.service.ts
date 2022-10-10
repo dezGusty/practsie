@@ -7,6 +7,8 @@ import { QuestionResponseType } from './questionresponsetype.model';
 import { AnswerSerialization } from './answerserialization.model';
 import { SettingsService } from './settings.service';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
+import { SurveyJsonConfigModel } from './survey-model/survey-json-config.model';
+import { SurveyDefinitionQuestionModel } from './survey-model/survey-definition-question.model';
 
 
 
@@ -48,7 +50,7 @@ export class SurveyService {
     if (!this.singleSurvey) {
       // Create the survey.
       if (this.userToken.length > 0) {
-        this.singleSurvey = this.makeSurveyFromData(surveyConfig);
+        this.singleSurvey = this.makeSurveyFromData(surveyConfig as SurveyJsonConfigModel);
         this.singleSurvey.name = 'default';
         this.singleSurvey.userToken = this.userToken;
       }
@@ -61,9 +63,9 @@ export class SurveyService {
    *
    * @param questionConfig configuration object for a single question in a survey.
    */
-  public makeQuestionFromData(questionConfig: any): SurveyQuestion {
-    const result: SurveyQuestion = new SurveyQuestion(questionConfig.headline, questionConfig.question);
-    const choicesArray = questionConfig.choices as Array<any>;
+  public makeQuestionFromData(questionConfig: SurveyDefinitionQuestionModel): SurveyQuestion {
+    const result: SurveyQuestion = new SurveyQuestion(questionConfig.headline, questionConfig.description);
+    const choicesArray = questionConfig.choices;
     choicesArray.forEach(choiceCfg => {
       result.answer.addChoice(new Choice(choiceCfg.value, choiceCfg.detail, choiceCfg.desc));
     });
@@ -80,9 +82,11 @@ export class SurveyService {
    *
    * @param configObject The JSON object containing the survey configuration.
    */
-  public makeSurveyFromData(configObject: any): Survey {
+  public makeSurveyFromData(configObject: SurveyJsonConfigModel): Survey {
+    console.log('making survey from', configObject);
+
     const result: Survey = new Survey('default');
-    const questionsAray = configObject.questions as Array<any>;
+    const questionsAray = configObject.questions;
 
     questionsAray.forEach(question => {
       result.questions.push(this.makeQuestionFromData(question));
@@ -91,7 +95,7 @@ export class SurveyService {
   }
 
   async saveSurveyResultsAsync(survey: Survey) {
-    console.log('[survey] saving', survey);
+    console.log('[survey] saving results', survey);
     if (survey.userToken.length <= 0) {
       // invalid
       console.log('[survey] token length is invalid!');

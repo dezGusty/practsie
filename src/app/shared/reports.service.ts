@@ -62,8 +62,6 @@ export class ReportsService {
     docsSnap.forEach(
       myDoc => {
         const docData = myDoc.data();
-        console.log(myDoc.id, ' => ', docData);
-
         const row: TableRow = reportObj.addRow();
         const keys: string[] = Object.keys(docData);
 
