@@ -22,11 +22,11 @@ export class DashComponent implements OnInit, OnDestroy {
   constructor(public reportSvc: ReportsService) { }
 
   ngOnInit(): void {
-    this.subscriptions.push(this.reportSvc.onReportReady.subscribe(
-      (message: any) => {
+    this.subscriptions.push(this.reportSvc.onReportReady.subscribe({
+      next: (_: any) => {
         this.reportData = this.reportSvc.getLatestReportObj();
       }
-    ));
+    }));
   }
 
   ngOnDestroy(): void {
