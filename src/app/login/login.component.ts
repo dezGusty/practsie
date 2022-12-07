@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../shared/survey.service';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  imports: [FormsModule],
   selector: 'app-login',
+  standalone: true,
+  styles: [''],
   templateUrl: './login.component.html',
-  styles: ['']
 })
 export class LoginComponent implements OnInit {
 

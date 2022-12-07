@@ -48,9 +48,6 @@ const cookieConfig: NgcCookieConsentConfig = {
   declarations: [
     AppComponent,
     SurveyComponent,
-    LoginComponent,
-    HeaderComponent,
-    DoneComponent,
     DashComponent
   ],
   imports: [
@@ -73,6 +70,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     // ChoiceComponent,
     // FreeComponent,
     QuestionComponent,
+    LoginComponent,
+    HeaderComponent,
+    DoneComponent,
   ],
   providers: [
     SurveyService,
