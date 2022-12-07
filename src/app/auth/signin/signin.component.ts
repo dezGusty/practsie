@@ -3,8 +3,9 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 
 @Component({
+  imports: [],
   selector: 'app-signin',
-  standalone: false,
+  standalone: true,
   styles: [''],
   templateUrl: './signin.component.html'
 })
