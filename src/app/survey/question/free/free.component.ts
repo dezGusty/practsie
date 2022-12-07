@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
 export class FreeComponent implements OnInit {
 
   @Output() answerChanged = new EventEmitter<string>();
-  public userAnswer= '';
+  public userAnswer = '';
   constructor() { }
 
   ngOnInit(): void {

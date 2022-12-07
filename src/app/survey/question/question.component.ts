@@ -7,11 +7,10 @@ import { FreeComponent } from './free/free.component';
 import { NgIf } from '@angular/common';
 
 @Component({
-  standalone: true,
   selector: 'app-question',
+  standalone: false,
+  styles: [''],
   templateUrl: './question.component.html',
-  imports: [ChoiceComponent, FreeComponent, NgIf],
-  styles: ['']
 })
 export class QuestionComponent implements OnInit {
 

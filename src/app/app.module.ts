@@ -22,6 +22,10 @@ import { DashComponent } from './dash/dash.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { AppStorage } from './shared/app-storage';
 import { OrganizerGuard } from './auth/organizer-guard.service';
+import { FreeComponent } from './survey/question/free/free.component';
+import { QuestionComponent } from './survey/question/question.component';
+import { ChoiceComponent } from './survey/question/choice/choice.component';
+import { SurveyComponent } from './survey/survey.component';
 
 // types: opt-out, opt-in, info
 const cookieConfig: NgcCookieConsentConfig = {
@@ -43,10 +47,11 @@ const cookieConfig: NgcCookieConsentConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    QuestionComponent,
+    SurveyComponent,
     LoginComponent,
     HeaderComponent,
     DoneComponent,
-    SigninComponent,
     DashComponent
   ],
   imports: [
@@ -65,7 +70,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    NgcCookieConsentModule.forRoot(cookieConfig)
+    NgcCookieConsentModule.forRoot(cookieConfig),
+    ChoiceComponent,
+    FreeComponent
   ],
   providers: [
     SurveyService,

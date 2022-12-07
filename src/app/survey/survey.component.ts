@@ -6,9 +6,8 @@ import { QuestionComponent } from './question/question.component';
 import { NgIf } from '@angular/common';
 
 @Component({
-  standalone: true,
+  standalone: false,
   selector: 'app-survey',
-  imports: [QuestionComponent, NgIf],
   templateUrl: './survey.component.html',
   styles: ['']
 })

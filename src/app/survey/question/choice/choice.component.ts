@@ -1,11 +1,14 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 import { Choice } from 'src/app/shared/choice.model';
 
 @Component({
+  imports: [FormsModule, BrowserModule],
   selector: 'app-choice',
   standalone: true,
+  styles: [''],
   templateUrl: './choice.component.html',
-  styles: ['']
 })
 export class ChoiceComponent implements OnInit {
 
