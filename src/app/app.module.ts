@@ -17,14 +17,11 @@ import { environment } from 'src/environments/environment';
 import { TokenGuard } from './auth/token-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { DoneComponent } from './login/done/done.component';
-import { SigninComponent } from './auth/signin/signin.component';
 import { DashComponent } from './dash/dash.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { AppStorage } from './shared/app-storage';
 import { OrganizerGuard } from './auth/organizer-guard.service';
-import { FreeComponent } from './survey/question/free/free.component';
 import { QuestionComponent } from './survey/question/question.component';
-import { ChoiceComponent } from './survey/question/choice/choice.component';
 import { SurveyComponent } from './survey/survey.component';
 
 // types: opt-out, opt-in, info
@@ -48,7 +45,7 @@ const cookieConfig: NgcCookieConsentConfig = {
   declarations: [
     AppComponent,
     SurveyComponent,
-    DashComponent
+
   ],
   imports: [
     provideAuth(() => {
@@ -73,6 +70,7 @@ const cookieConfig: NgcCookieConsentConfig = {
     LoginComponent,
     HeaderComponent,
     DoneComponent,
+    DashComponent,
   ],
   providers: [
     SurveyService,

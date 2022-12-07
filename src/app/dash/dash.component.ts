@@ -3,11 +3,15 @@ import { SurveyService } from '../shared/survey.service';
 import { ReportsService } from '../shared/reports.service';
 import { TableData } from '../shared/tabledata.model';
 import { Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  imports: [CommonModule, FormsModule],
   selector: 'app-dash',
+  standalone: true,
+  styles: [''],
   templateUrl: './dash.component.html',
-  styles: ['']
 })
 export class DashComponent implements OnInit, OnDestroy {
 
