@@ -26,7 +26,10 @@ export class SurveyService {
   private singleSurvey: Survey | undefined = undefined;
   constructor(
     private firestore: Firestore,
-    private settingsSvc: SettingsService) { }
+    private settingsSvc: SettingsService) {
+    console.log('SurveyService v2');
+
+  }
 
   doesTokenSeemValid(token: string): boolean {
     return token.startsWith('PS-');
@@ -38,6 +41,7 @@ export class SurveyService {
   }
 
   setUserToken(token: string) {
+    console.log('Your user token is [', token, ']');
     this.userToken = token;
   }
 

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../shared/survey.service';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  imports: [FormsModule],
+  imports: [FormsModule, RouterModule],
   selector: 'app-login',
   standalone: true,
   styles: [''],

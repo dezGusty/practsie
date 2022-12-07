@@ -3,10 +3,10 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   imports: [RouterModule],
-  standalone: true,
   selector: 'app-header',
+  standalone: true,
+  styles: [''],
   templateUrl: './header.component.html',
-  styles: ['']
 })
 export class HeaderComponent implements OnInit {
 
