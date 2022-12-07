@@ -2,9 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { SurveyService } from '../shared/survey.service';
 import { Survey } from '../shared/survey.model';
 import { Router } from '@angular/router';
+import { QuestionComponent } from './question/question.component';
+import { NgIf } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-survey',
+  imports: [QuestionComponent, NgIf],
   templateUrl: './survey.component.html',
   styles: ['']
 })

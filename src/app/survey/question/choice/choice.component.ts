@@ -3,6 +3,7 @@ import { Choice } from 'src/app/shared/choice.model';
 
 @Component({
   selector: 'app-choice',
+  standalone: true,
   templateUrl: './choice.component.html',
   styles: ['']
 })

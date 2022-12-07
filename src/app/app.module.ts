@@ -11,16 +11,12 @@ import { provideAuth, connectAuthEmulator, getAuth } from '@angular/fire/auth';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SurveyComponent } from './survey/survey.component';
-import { QuestionComponent } from './survey/question/question.component';
 import { LoginComponent } from './login/login.component';
 import { SurveyService } from './shared/survey.service';
-import { ChoiceComponent } from './survey/question/choice/choice.component';
 import { environment } from 'src/environments/environment';
 import { TokenGuard } from './auth/token-guard.service';
 import { HeaderComponent } from './header/header.component';
 import { DoneComponent } from './login/done/done.component';
-import { FreeComponent } from './survey/question/free/free.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import { DashComponent } from './dash/dash.component';
 import { AuthGuard } from './auth/auth-guard.service';
@@ -47,13 +43,9 @@ const cookieConfig: NgcCookieConsentConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    SurveyComponent,
-    QuestionComponent,
     LoginComponent,
-    ChoiceComponent,
     HeaderComponent,
     DoneComponent,
-    FreeComponent,
     SigninComponent,
     DashComponent
   ],

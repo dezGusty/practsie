@@ -2,17 +2,22 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SurveyQuestion } from 'src/app/shared/surveyquestion.model';
 import { Choice } from 'src/app/shared/choice.model';
 import { QuestionResponseType } from 'src/app/shared/questionresponsetype.model';
+import { ChoiceComponent } from './choice/choice.component';
+import { FreeComponent } from './free/free.component';
+import { NgIf } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-question',
   templateUrl: './question.component.html',
+  imports: [ChoiceComponent, FreeComponent, NgIf],
   styles: ['']
 })
 export class QuestionComponent implements OnInit {
 
   @Input() question: SurveyQuestion | undefined;
   @Input() counter: number;
-  @Input() maxcounter: number;
+  @Input() maxcounter: number | undefined;
 
   constructor() {
     this.counter = 0;
