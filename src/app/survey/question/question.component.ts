@@ -4,11 +4,12 @@ import { Choice } from 'src/app/shared/choice.model';
 import { QuestionResponseType } from 'src/app/shared/questionresponsetype.model';
 import { ChoiceComponent } from './choice/choice.component';
 import { FreeComponent } from './free/free.component';
-import { NgIf } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
+  imports: [ChoiceComponent, FreeComponent, NgIf, NgFor],
   selector: 'app-question',
-  standalone: false,
+  standalone: true,
   styles: [''],
   templateUrl: './question.component.html',
 })

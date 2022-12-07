@@ -47,7 +47,6 @@ const cookieConfig: NgcCookieConsentConfig = {
 @NgModule({
   declarations: [
     AppComponent,
-    QuestionComponent,
     SurveyComponent,
     LoginComponent,
     HeaderComponent,
@@ -71,8 +70,9 @@ const cookieConfig: NgcCookieConsentConfig = {
     FormsModule,
     AppRoutingModule,
     NgcCookieConsentModule.forRoot(cookieConfig),
-    ChoiceComponent,
-    FreeComponent
+    // ChoiceComponent,
+    // FreeComponent,
+    QuestionComponent,
   ],
   providers: [
     SurveyService,
