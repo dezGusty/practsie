@@ -3,10 +3,12 @@ import { SurveyService } from '../shared/survey.service';
 import { Survey } from '../shared/survey.model';
 import { Router } from '@angular/router';
 import { QuestionComponent } from './question/question.component';
-import { NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  standalone: false,
+  imports: [QuestionComponent, CommonModule, FormsModule, NgIf, NgFor],
+  standalone: true,
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styles: ['']

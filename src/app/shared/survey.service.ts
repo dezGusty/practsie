@@ -16,9 +16,7 @@ const surveyConfig = require('./surveyconfig.json').surveyConfig;
 
 
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class SurveyService {
 
   private userToken = '';
