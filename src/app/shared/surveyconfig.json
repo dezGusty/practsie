@@ -330,6 +330,53 @@
                 ]
             },
             {
+                "headline": "Automatizări",
+                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele despre automatizări, pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
+                "choices": [
+                    {
+                        "value": 0,
+                        "desc": "Fără experiență"
+                    },
+                    {
+                        "value": 1,
+                        "desc": "Cunoștințe generale despre automatizări"
+                    },
+                    {
+                        "value": 2
+                    },
+                    {
+                        "value": 3,
+                        "desc": "Cunoștințe generale despre senzori și elemente de execuție (actuatoare, motoare / motorașe de curent continuu, motoare de curent alternativ, motorașe pas cu pas), etc"
+                    },
+                    {
+                        "value": 4
+                    },
+                    {
+                        "value": 5,
+                        "desc": "Cunoștinte generale despre sisteme de comandă în automatizări de scară redusă (sisteme cu microcontrolere, Arduino, Raspberry, PLC-uri, etc)"
+                    },
+                    {
+                        "value": 6
+                    },
+                    {
+                        "value": 7,
+                        "desc": "Am implementat proiecte la scară redusă realizate cu senzori, elemente de execuție și module de comandă (Arduino, Raspberry, etc)",
+                        "detail": "(De ex. Am experimentat conectarea unor senzori la Arduino, am comandat un motoras pas cu pas, folosind Raspberry, etc)"
+                    },
+                    {
+                        "value": 8
+                    },
+                    {
+                        "value": 9
+                    },
+                    {
+                        "value": 10,
+                        "desc": "Am implementat proiecte cu un grad de complexitate mai ridicat, care să conțină module de comandă, senzori, elemente de execuție, interfață HMI (pe PC, laptop, telefon, etc).",
+                        "detail": "(De ex. Braț robotic, roboțel autonom, aplicații Smart Home, etc)"
+                    }
+                ]
+            },
+            {
                 "headline": "HW - Proiectarea Circuite Digitale",
                 "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele de Circuite Digitale si Proiectarea acestora, pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
                 "choices": [
@@ -375,54 +422,6 @@
                         "value": 10,
                         "desc": "Cred că mă pot angaja ca HW developer junior",
                         "detail": "(Cunosc în detaliu modalitățile de proiectare și simulare a Circuitelor Digitale)"
-                    }
-                ]
-            },
-            {
-                "headline": "Automatizări",
-                "question": "Spune-ne te rog cum ți-ai autoevalua cunoștințele despre automatizări, pe o scară de la 1 la 10. Am notat și câteva exemple pentru ce ne-am aștepta noi să știe cineva care se autoevalueaza la o anumită notă.",
-                "choices": [
-                    {
-                        "value": 0,
-                        "desc": "Fără experiență"
-                    },
-                    {
-                        "value": 1,
-                        "desc": "Cunoștințe generale despre automatizări"
-                    },
-                    {
-                        "value": 2
-                    },
-                    {
-                        "value": 3,
-                        "desc": "Cunoștințe generale despre senzori și elemente de execuție (actuatoare, motoare / motorașe de curent continuu, motoare de curent alternativ, motorașe pas cu pas), etc"
-                    },
-                    {
-                        "value": 4
-                    },
-                    {
-                        "value": 5,
-                        "desc": "Cunoștinte generale despre sisteme de comandă în automatizări de scară redusă (sisteme cu microcontrolere, Arduino, Raspberry, PLC-uri, etc)"
-                    },
-                    {
-                        "value": 6
-                    },
-                    {
-                        "value": 7,
-                        "desc": "Am implementat proiecte la scară redusă realizate cu senzori, elemente de execuție și module de comandă (Arduino, Raspberry, etc)",
-                        "detail": "(De ex. Am experimentat conectarea unor senzori la Arduino, am comandat un motoras pas cu pas, folosind Raspberry, etc)"
-
-                    },
-                    {
-                        "value": 8
-                    },
-                    {
-                        "value": 9
-                    },
-                    {
-                        "value": 10,
-                        "desc": "Am implementat proiecte cu un grad de complexitate mai ridicat, care să conțină module de comandă, senzori, elemente de execuție, interfață HMI (pe PC, laptop, telefon, etc).",
-                        "detail": "(De ex. Braț robotic, roboțel autonom, aplicații Smart Home, etc)"
                     }
                 ]
             },
@@ -541,7 +540,7 @@
                 "question": "Link către repository public cu proiecte personale.",
                 "choices": [],
                 "type": "free"
-            },            
+            },
             {
                 "headline": "Preferință domeniu 1",
                 "question": "Spune-ne te rog prima ta opțiune în domeniul de practică.",
