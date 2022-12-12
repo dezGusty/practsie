@@ -44,6 +44,7 @@ const cookieConfig: NgcCookieConsentConfig = {
 @NgModule({
   declarations: [
     AppComponent,
+    SurveyComponent,
   ],
   imports: [
     provideAuth(() => {
@@ -67,7 +68,6 @@ const cookieConfig: NgcCookieConsentConfig = {
     HeaderComponent,
     DoneComponent,
     DashComponent,
-    SurveyComponent,
   ],
   providers: [
     SurveyService,

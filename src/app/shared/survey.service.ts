@@ -25,8 +25,6 @@ export class SurveyService {
   constructor(
     private firestore: Firestore,
     private settingsSvc: SettingsService) {
-    console.log('SurveyService v2');
-
   }
 
   doesTokenSeemValid(token: string): boolean {
@@ -39,7 +37,6 @@ export class SurveyService {
   }
 
   setUserToken(token: string) {
-    console.log('Your user token is [', token, ']');
     this.userToken = token;
   }
 
@@ -85,8 +82,6 @@ export class SurveyService {
    * @param configObject The JSON object containing the survey configuration.
    */
   public makeSurveyFromData(configObject: SurveyJsonConfigModel): Survey {
-    console.log('making survey from', configObject);
-
     const result: Survey = new Survey('default');
     const questionsAray = configObject.questions;
 
@@ -97,7 +92,6 @@ export class SurveyService {
   }
 
   async saveSurveyResultsAsync(survey: Survey) {
-    console.log('[survey] saving results', survey);
     if (survey.userToken.length <= 0) {
       // invalid
       console.log('[survey] token length is invalid!');
