@@ -9,5 +9,9 @@
         Submit
       </button>
     </div>
+
+    <div *ngIf="this.errorMessage">
+      {{this.errorMessage}}
+    </div>
   </form>
 </div>

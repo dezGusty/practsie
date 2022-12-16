@@ -7,8 +7,8 @@ import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  // imports: [QuestionComponent, CommonModule, FormsModule, NgIf, NgFor, RouterModule],
-  // standalone: true,
+  imports: [QuestionComponent, CommonModule, FormsModule, NgIf, NgFor, RouterModule],
+  standalone: true,
   selector: 'app-survey',
   templateUrl: './survey.component.html',
   styles: ['']
@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 export class SurveyComponent implements OnInit {
 
   public survey: Survey | undefined;
+  public errorMessage: string | undefined;
 
   constructor(
     private surveySvc: SurveyService,
@@ -27,11 +28,17 @@ export class SurveyComponent implements OnInit {
   }
 
   async onStoreResultsClicked() {
+    console.log('Storing results');
+
     if (!this.survey) {
       return;
     }
 
-    await this.surveySvc.saveSurveyResultsAsync(this.survey);
+    const saveResult = await this.surveySvc.saveSurveyResultsAsync(this.survey);
+    if (!saveResult.ok) {
+      this.errorMessage = 'Could not save results';
+      return;
+    }
 
     console.log('Thank you.');
     this.surveySvc.clearTokenAndDoc();

@@ -9,6 +9,7 @@ import { SettingsService } from './settings.service';
 import { doc, Firestore, setDoc } from '@angular/fire/firestore';
 import { SurveyJsonConfigModel } from './survey-model/survey-json-config.model';
 import { SurveyDefinitionQuestionModel } from './survey-model/survey-definition-question.model';
+import { Result, wrap } from './result';
 
 
 
@@ -91,11 +92,11 @@ export class SurveyService {
     return result;
   }
 
-  async saveSurveyResultsAsync(survey: Survey) {
+  async saveSurveyResultsAsync(survey: Survey): Promise<Result<boolean>> {
     if (survey.userToken.length <= 0) {
       // invalid
       console.log('[survey] token length is invalid!');
-      return;
+      return { ok: false, error: Error('invalid token') };
     }
     const docName = '/' + this.settingsSvc.getSurveyCollection() + '/' + survey.userToken;
     const docRef = doc(this.firestore, docName);
@@ -112,6 +113,19 @@ export class SurveyService {
       obj[question.headline] = answerValue;
     });
 
-    await setDoc(docRef, obj, { merge: true });
+    const writeDocResult = await setDoc(docRef, obj, { merge: true })
+      .catch(
+        (err) => {
+          if (err.code === 'permission-denied') {
+            return { ok: false, error: Error('permission denied') };
+          }
+          return { ok: false, error: Error('some other error') };
+        });
+
+    if (writeDocResult === undefined) {
+      return { ok: true, value: true };
+    }
+
+    return { ok: false, error: writeDocResult.error };
   }
 }
