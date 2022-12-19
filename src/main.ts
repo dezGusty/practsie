@@ -3,12 +3,10 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { bootstrapApplication } from '@angular/platform-browser';
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { provideRouter, RouterModule, Routes, withDebugTracing } from '@angular/router';
 import { NgcCookieConsentConfig, NgcCookieConsentModule } from 'ngx-cookieconsent';
 import { AppComponent } from './app/app.component';
 
-// import { AppModule } from './app/app.module';
 import { AuthGuard } from './app/auth/auth-guard.service';
 import { OrganizerGuard } from './app/auth/organizer-guard.service';
 import { SigninComponent } from './app/auth/signin/signin.component';
@@ -24,9 +22,6 @@ import { environment } from './environments/environment';
 if (environment.production) {
   enableProdMode();
 }
-
-// platformBrowserDynamic().bootstrapModule(AppModule)
-//   .catch(err => console.error(err));
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -55,7 +50,6 @@ const appRoutes: Routes = [
 
 bootstrapApplication(AppComponent, {
   providers: [
-    // importProvidersFrom(RouterModule.forRoot(appRoutes)),
     provideRouter(appRoutes, withDebugTracing()),
     importProvidersFrom(provideAuth(() => {
       const auth = getAuth();
