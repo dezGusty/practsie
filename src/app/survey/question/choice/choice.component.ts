@@ -1,10 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { Choice } from 'src/app/shared/choice.model';
 
 @Component({
-  imports: [FormsModule, BrowserModule],
+  imports: [FormsModule, CommonModule],
   selector: 'app-choice',
   standalone: true,
   styles: [''],

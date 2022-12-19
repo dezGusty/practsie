@@ -55,8 +55,8 @@ const appRoutes: Routes = [
 
 bootstrapApplication(AppComponent, {
   providers: [
-    importProvidersFrom(RouterModule.forRoot(appRoutes)),
-    // provideRouter(appRoutes, withDebugTracing()),
+    // importProvidersFrom(RouterModule.forRoot(appRoutes)),
+    provideRouter(appRoutes, withDebugTracing()),
     importProvidersFrom(provideAuth(() => {
       const auth = getAuth();
       return auth;

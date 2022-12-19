@@ -4,10 +4,10 @@ import { Choice } from 'src/app/shared/choice.model';
 import { QuestionResponseType } from 'src/app/shared/questionresponsetype.model';
 import { ChoiceComponent } from './choice/choice.component';
 import { FreeComponent } from './free/free.component';
-import { NgFor, NgIf } from '@angular/common';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 
 @Component({
-  imports: [ChoiceComponent, FreeComponent, NgIf, NgFor],
+  imports: [ChoiceComponent, FreeComponent, NgIf, NgFor, CommonModule],
   selector: 'app-question',
   standalone: true,
   styles: [''],

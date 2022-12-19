@@ -1,8 +1,9 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   selector: 'app-free',
   standalone: true,
   styles: [''],
