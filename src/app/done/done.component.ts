@@ -11,11 +11,9 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class DoneComponent implements OnInit {
 
-  constructor(private router: Router) {console.log('done c'); }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log('done');
-
   }
 
 }
